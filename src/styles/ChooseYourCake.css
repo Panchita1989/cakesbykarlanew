@@ -1,0 +1,18 @@
+
+body{
+  text-align: center;
+  
+}
+select{
+  z-index: 90000;
+  border: 1px solid #5A5A54;
+  text-align: center;
+}
+.option{
+  width: 15%;
+}
+h2{
+  color: #5A5A54;
+}
+
+
