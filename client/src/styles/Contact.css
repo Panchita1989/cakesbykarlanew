@@ -39,3 +39,12 @@ form{
 .login:hover{
     color: rgb(195, 174, 170);
 }
+
+@media screen and (max-width: 1000px){
+    .imageSection{
+        display: none;
+    }
+    .wrapperForm, form{
+        width: 100%;
+    }
+}
