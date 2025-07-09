@@ -1,14 +1,15 @@
-import formConfig from "../data/formData.js";
 import {Link} from 'react-router-dom'
 import '../styles/contact.css'
 
-export default function FormComponent({formData}) {
+export default function FormComponent({formData, handleSubmit}) {
+    const onSubmit = handleSubmit || ((e) => e.preventDefault());
+    console.log("handleSubmit ist:", handleSubmit);
     
     return(
             <div className='wrapperForm'>
                 <h2>{formData.title}</h2>
                 <Link to={formData.linkTo} className='login' >{formData.option}</Link>
-                <form>
+                <form onSubmit={handleSubmit}>
                     {formData.fields.map((field)=>{
                     if(field.type === 'textarea') {
                      return (  

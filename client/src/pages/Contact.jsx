@@ -1,10 +1,10 @@
 import '../styles/contact.css'
-import FormComponent from '../components/FormComponent.jsx'
+import FormWrapper from '../components/FormWrapper'
 import formConfig from '../data/formData.js'
 
 export default function Contact(){
     return(
-        <FormComponent formData={formConfig.contact}
+        <FormWrapper handleSubmit={() => {}}
         />
     )
 }

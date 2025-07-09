@@ -6,13 +6,14 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')
 const logger = require('morgan')
 const connectDB = require('./config/database')
-const mainRoutes = require('./routes/main')
+const cors = require('cors')
+//const mainRoutes = require('./routes/main')
 const authRoutes = require('./routes/auth')
-const cartRoutes = require('./routes/cart')
+//const cartRoutes = require('./routes/cart')
 
 require('dotenv').config({path: './config/.env'})
 
-require('./config/passport')
+require('./config/passport')(passport)
 
 connectDB()
 
@@ -20,6 +21,8 @@ app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
 app.use(logger('dev'))
+
+app.use(cors())
 
 app.use(
   session({
@@ -39,9 +42,8 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/', mainRoutes)
 app.use('/user', authRoutes)
-app.use('/cart', cartRoutes)
+//app.use('/cart', cartRoutes)
 
 app.listen(process.env.PORT, ()=> {
     console.log('Server is running, you better catch it!')

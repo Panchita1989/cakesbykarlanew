@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom'
 import FormComponent from './FormComponent'
 
 
-export default function FormWrapper(){
+export default function FormWrapper({handleSubmit}){
 
     const location = useLocation()
 
@@ -20,7 +20,7 @@ export default function FormWrapper(){
     const [activeForm, setActiveForm] = useState(getInitialForm())
     const [imagePosition, setImagePosition] = useState('right')
     const [direction, setDirection] = useState('none')
-    const [camefromOutside, setCameFromOutside] = useState(true)
+  //  const [camefromOutside, setCameFromOutside] = useState(true)
 
     useEffect(()=> {
         const path = location.pathname
@@ -43,13 +43,17 @@ export default function FormWrapper(){
 
         setActiveForm(newForm)
     }, [location.pathname])
+
+
+
+
     const image = formConfig[activeForm].image
 
     return(
         <div className='formWrapper'>
             {imagePosition === 'right' ? (
                 <>
-                    <div className={`formSection ${direction}`}><FormComponent formData ={formConfig[activeForm]}/></div>
+                    <div className={`formSection ${direction}`}><FormComponent formData ={formConfig[activeForm]} handleSubmit={handleSubmit} /></div>
                     <div className={`imageSection ${direction}`}>
                         <img src={formConfig[activeForm].image.src} alt={formConfig[activeForm].image.alt} />
                     </div>
@@ -59,7 +63,7 @@ export default function FormWrapper(){
                     <div className={`imageSection ${direction}`}>
                         <img src={formConfig[activeForm].image.src} alt={formConfig[activeForm].image.alt} />
                     </div>
-                    <div className={`formSection ${direction}`}><FormComponent formData ={formConfig[activeForm]}/></div>
+                    <div className={`formSection ${direction}`}><FormComponent formData ={formConfig[activeForm]} handleSubmit={handleSubmit}/></div>
                 </>
         
     )
