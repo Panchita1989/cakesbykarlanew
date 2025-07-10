@@ -16,7 +16,7 @@ export default function CakeCard(props) {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/cake/add',{
+            const res = await fetch('http://localhost:5000/cakes/add',{
                 method: 'POST',
                 credentials: 'include',
                 headers: {

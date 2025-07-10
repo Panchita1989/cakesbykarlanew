@@ -27,3 +27,12 @@ exports.postCake = async (req, res, next) => {
     return next(error);
   }
 }
+
+exports.getCake = async(req, res) => {
+  try{
+    const cakes = await Cake.find()
+    res.json(cakes)
+  }catch(err){
+    res.status(500).json({error: err.message})
+  }
+}

@@ -7,7 +7,6 @@ const MongoStore = require('connect-mongo')
 const logger = require('morgan')
 const connectDB = require('./config/database')
 const cors = require('cors')
-//const mainRoutes = require('./routes/main')
 const authRoutes = require('./routes/auth')
 const cakeRoutes = require('./routes/cake')
 
@@ -48,7 +47,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use('/user', authRoutes)
-app.use('/cake', cakeRoutes)
+app.use('/cakes', cakeRoutes)
 
 app.listen(process.env.PORT, ()=> {
     console.log('Server is running, you better catch it!')

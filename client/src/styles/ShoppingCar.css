@@ -5,5 +5,9 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
-
-
+span{
+  margin: 0 5px;
+}
+.delete{
+    margin: 10px 0 0 0;
+}
