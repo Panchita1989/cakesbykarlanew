@@ -1,9 +1,5 @@
-.carWrapper{
-    height: 1000px;
-    background-image: url('src/assets/images/karla.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+.min-h-screen{
+    background-color: #e8e3e6;
 }
 span{
   margin: 0 5px;

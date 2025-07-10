@@ -51,12 +51,13 @@ export default function ShoppingCart(){
     function getTotalPrice(cake) {
         return cake.price * cake.quantity
     }
+    const totalPriceOrder = cakes.reduce((acc, c) => acc + getTotalPrice(c),0 )
 
     return(
         <>
         <div className="min-h-screen bg-gray-100 p-6">
-        <h1 className="text-3xl font-bold mb-6">Your Cart 🛒</h1>    
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h1 className="text-xl font-bold mb-6">Your Cart 🛒</h1>    
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
         {cakes.map((cake) => (
             <article className= 'bg-white border rounded-lg shadow-lg overflow-hidden'>
                 <img 
@@ -87,6 +88,10 @@ export default function ShoppingCart(){
             </article>
         ))}
         </div>
+        </div>
+        <div className='totalOrder'>
+            <span>Your total order is: ${totalPriceOrder} MXN</span>
+            <span>Click Checkout to finish your order</span>
         </div>
         <button>✅ Checkout </button>
         <button>🗑️ Delete all</button>
