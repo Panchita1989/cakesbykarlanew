@@ -2,10 +2,12 @@ import FormWrapper from '../components/FormWrapper'
 import formConfig from '../data/formData.js'
 import '../styles/contact.css'
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 
 export default function Login() {
     const navigate = useNavigate()
+    const[error, setError] = useState([])
 
     const handleLogin= async(e)=>{
         e.preventDefault()
@@ -16,24 +18,36 @@ export default function Login() {
         try {
             const res = await fetch('http://localhost:5000/user/login',{
                 method: 'POST',
-                //credentials: 'include',
+                credentials: 'include',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body:JSON.stringify(data)
             })
             const result = await res.json()
-            if(res.ok){
-                navigate('/')
+            if(!res.ok){
+                setError(result.errors || [{msg: result.msg ||'Something went wrong!'}])
             }else{
-                console.log(result.errors ||result.msg)
+                setError([])
+                navigate('/profile')
             }
         } catch (error) {
+            setError([{msg: 'Server error. Please try again later.'}])
             console.log(error)
         }
     }
 
     return(
-        <FormWrapper handleSubmit={handleLogin} />
+        <>{error.length > 0 &&(
+            <ul className='error-list'>
+                {error.map((error, index)=>
+                    <li key={index}>{error.msg}</li>
+                )}
+            </ul>
+        )}
+          
+            <FormWrapper handleSubmit={handleLogin} />
+        </>
+        
     )
 }

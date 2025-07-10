@@ -22,20 +22,25 @@ app.use(express.json())
 
 app.use(logger('dev'))
 
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}))
 
 app.use(
   session({
     secret: process.env.SESSION_SECRET,      // Cookie-Signatur
     resave: false,                            // Nur speichern, wenn sich was ändert
     saveUninitialized: false,                 // Nur speichern, wenn etwas drinsteht
+    cookie:{
+      httpOnly: true,
+      secure: false,
+      sameSite: 'lax'
+    },
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,        // Verbindung zur MongoDB
       ttl: 14 * 24 * 60 * 60,                 // Session läuft nach 14 Tagen ab (optional)
-    }),
-    cookie: {
-      maxAge: 1000 * 60 * 60 * 24, // 1 Tag gültig
-    },
+    })
   })
 )
 

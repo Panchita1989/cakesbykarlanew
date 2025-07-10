@@ -3,7 +3,6 @@ import '../styles/contact.css'
 
 export default function FormComponent({formData, handleSubmit}) {
     const onSubmit = handleSubmit || ((e) => e.preventDefault());
-    console.log("handleSubmit ist:", handleSubmit);
     
     return(
             <div className='wrapperForm'>

@@ -26,7 +26,7 @@ const formConfig = {
         method: 'POST',
         fields:[
             {id: '1', name: 'email', type: 'email', placeholder: 'E-Mail', required: true},
-            {id: '2', name: 'password', type: 'password', required: true},
+            {id: '2', name: 'password', type: 'password', placeholder: 'Password', required: true},
             {id: '3', name: 'submit', type: 'submit', content: 'Login'}
         ],
         image: {

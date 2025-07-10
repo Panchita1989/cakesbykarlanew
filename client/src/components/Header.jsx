@@ -6,6 +6,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 import {faHouse} from '@fortawesome/free-solid-svg-icons'
 import {Link} from 'react-router-dom'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 
 
 export  default function Header(){
@@ -21,6 +22,7 @@ export  default function Header(){
                 <Link to='https://www.instagram.com/karla_arroyave/' target='blank'><li><FontAwesomeIcon icon = {faInstagram} /></li></Link>
                 <Link to='/contact'><li><FontAwesomeIcon icon = {faEnvelope} /></li></Link>
                 <Link to='/login'><li><FontAwesomeIcon icon = {faRightToBracket} /></li></Link>
+                <Link to='/profile'><li><FontAwesomeIcon icon={faUser} /></li> </Link>
                 </ul>
             </div>
             

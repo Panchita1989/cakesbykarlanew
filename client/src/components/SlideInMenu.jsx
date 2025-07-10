@@ -38,10 +38,10 @@ export default function SlideInMenu() {
             <ul>
               <Link to='/' onClick={()=> setIsOpen(false)}><li><FontAwesomeIcon icon={faHouse}/> Home</li></Link>
               <Link to= '/choose' onClick ={()=> setIsOpen(false)}><li><FontAwesomeIcon icon={faCookie} /> Our Favorite Bakes</li></Link>
-              <Link to= '/buildYourOwn' onClick = {()=> setIsOpen(false)}><li><FontAwesomeIcon icon={faCake} /> Build your own Cake</li></Link>
               <Link to= '/shoppingCar' onClick = {()=> setIsOpen(false)}><li><FontAwesomeIcon icon={faShoppingCart} /> Shopping Cart</li></Link>
               <Link to= '/contact' onClick = {()=> setIsOpen(false)}><li><FontAwesomeIcon icon={faEnvelope} /> Contact</li></Link>
               <Link to='/login' onClick ={() => setIsOpen(false)}><li><FontAwesomeIcon icon={faRightToBracket} /> Log In</li></Link>
+              <li>Logout</li>
             </ul>
             </div>
       </div>

@@ -14,6 +14,7 @@ import SigneUp from './pages/SigneUp'
 import ScrollToTop from './components/ScrollToTop'
 import BuildMyCake from './pages/BuildMyCake'
 import ShoppingCar from './pages/ShoppingCar'
+import Profile from './pages/Profile'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
     <Route path='/signeup' element={<SigneUp />}/>
     <Route path='/buildYourOwn' element={<BuildMyCake />}/>
     <Route path='/shoppingCar' element={<ShoppingCar />}/>
+    <Route path='/profile' element={<Profile />} />
   </Routes>
   <Footer />
 

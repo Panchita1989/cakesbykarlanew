@@ -22,6 +22,9 @@ export default function LandingPage(){
                     <Link to='/contact'>
                     <button >Contact Me</button>
                     </Link>
+                    <Link to='/choose'>
+                    <button className='ourFavoriteBakes'>Our favorite Bakes</button>   
+                    </Link>
                     </section>
                     
                 </div>
@@ -29,14 +32,6 @@ export default function LandingPage(){
                     <img src={Karla} alt="Karla" />
                 </div>
             </div>
-            <section className='choosYourOption'> 
-                <Link to='/buildYourOwn'>                        
-                    <button className='buildYourOwnCake'>Build your own cake</button>  
-                </Link>                
-                <Link to='/choose' >                   
-                    <button className='ourFavoriteBakes'>Our favorite Bakes</button>   
-                </Link>             
-            </section>
         </div>
           
     )

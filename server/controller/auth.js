@@ -2,6 +2,7 @@ const passport = require('passport')
 const validator = require('validator')
 const User = require('../model/User')
 
+
 exports.getCurrentUser = (req, res) => {
     if(!req.user){
         return res.status(401).json({msg: 'Not logged in.'})
@@ -46,6 +47,9 @@ exports.postLogin = async (req, res, next) => {
         else resolve();
       });
     });
+    
+    console.log("Session nach Login:", req.session);
+    console.log("User nach Login:", req.user);
 
     res.status(200).json({
       msg: 'Success! You are logged in.',
@@ -70,12 +74,15 @@ exports.postSignup = async (req, res, next) => {
   try {
     console.log("Signup Route reached");
 
-    const { name, surname, birthday, email, password, confirmPassword } = req.body;
+    const { name, surname, birthday, email, confirmEmail, password, confirmPassword } = req.body;
     const validationErrors = [];
+    const regex = /[A-Za-z]/
 
     if (!validator.isEmail(email)) validationErrors.push({ msg: 'Please enter a valid email address.' });
     if (!validator.isLength(password, { min: 8 })) validationErrors.push({ msg: 'Password must be at least 8 characters long' });
     if (password !== confirmPassword) validationErrors.push({ msg: 'Passwords do not match' });
+    if (email !== confirmEmail) validationErrors.push({msg: 'Emails do not match'})
+    if (regex.test(birthday)) validationErrors.push({msg: 'Please enter a valid date dd.mm.yyyy'})
 
     if (validationErrors.length) {
       return res.status(400).json({ errors: validationErrors });
@@ -117,7 +124,19 @@ exports.postSignup = async (req, res, next) => {
     console.error('Signup error:', err);
     return res.status(500).json({ error: 'Internal server error' });
   }
-};
-
-   
-  
+}
+exports.logout = (req, res) => {
+  req.logout((err) => {
+    if(err){
+      return res.status(500).json({msg: 'Logout failed' , error: err}) 
+  }
+  req.session.destroy((err) => {
+      if(err){
+        console.log('Error: failed to destroy the session during logout', err)
+        return res.status(500).json({msg: 'Failed to destroy session'})
+      }
+  res.clearCookie('connect.sid')
+  return res.status(200).json({msg: 'Successfully logged out'})
+  })
+  })
+}
