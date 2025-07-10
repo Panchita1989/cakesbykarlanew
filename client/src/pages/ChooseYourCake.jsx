@@ -8,6 +8,7 @@ export default function ChooseYourCake() {
         return(
             <CakeCard
                 key={cake.id}
+                id={cake.id}
                 img={cake.img}
                 name={cake.name}
                 description={cake.description}

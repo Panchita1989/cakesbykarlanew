@@ -34,7 +34,7 @@ export default function Profile (){
     if(!user){
         return(
             <>
-                <p>Please go to <Link to='/login'>Login</Link></p>
+                <p>Please go to <Link to='/login' className='link'>Login</Link></p>
             </>
         )
     }

@@ -1,35 +1,30 @@
-import '../styles/ChooseYourCake.css'
-import data from '../data/cakeData.js'
-import CakeCard from '../components/CakeCard'
+import React from 'react'
+import {useState, useEffect} from 'react'
 
 
-export default function ChooseYourCake() {
-    const cakeElements = data.map(cake => {
-        return(
-            <CakeCard
-                key={cake.id}
-                img={cake.img}
-                name={cake.name}
-                description={cake.description}
-                price={cake.price}
-            />
-        )
-    })
+export default function ShoppingCart(){
+    const [cakes, setCakes] = React.useState(null)
+
+    useEffect(()=>{
+        fetch('http://localhost:5000/cakes')
+        .then((res) => res.json())
+        .then((data) => setCakes(data))
+        .catch(err => console.error(err))
+    },[])
+
     return(
-        <main className='px-4 py-16 sm:px-6 sm:py-24 lg:px-8'>
-            <h2 className="text-2xl font-bold tracking-tight text-gray-900">Shopping Cart</h2>
-            <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {cakeElements}
-            </div>
-            <div className='finalOrder'>
-                <h2>Total</h2>
-                <span>amount</span>
-                <button>Checkout</button> 
-                <span>or</span>
-                <button>Continue Shopping</button>
-            </div>
-        </main>
+        <>
         
+        <h1>Shopping Cart</h1>
+        {cakes.toArray().map((cake) => {
+           <div key = {cake.id}>
+            <h3>{cake.name}</h3>
+            <img src={cake.image} alt={cake.name} />
+            <p>{cake.description}</p>
+            <p>{cake.price} MXN</p>
+           </div> 
+        })}
+        </>
     )
-} 
-   
+}
+

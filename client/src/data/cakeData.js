@@ -14,7 +14,7 @@ const cakes = [
         },
         name: 'Chocolate Cake',
         description: 'A delicious chocolate cake with rich frosting.',
-        price: '$650 MXN'
+        price: 650
 
     },
     {
@@ -25,7 +25,7 @@ const cakes = [
         },
         name: 'Vanilla Cake',
         description: 'A light and fluffy vanilla cake with creamy filling.',
-        price: '$650 MXN'
+        price: 650
     },
     {
          id: '3',
@@ -35,7 +35,7 @@ const cakes = [
         },
         name: 'Carrot Cake',
         description: 'A refreshing carrot cake with a hint of cream.',
-        price: '$550 MXN'
+        price: 550 
     },
     {
          id: '4',
@@ -45,7 +45,7 @@ const cakes = [
         },
         name: 'Cheescake',
         description: 'A rich and creamy cheesecake topped with fresh mixed berries.',
-        price: '$780 MXN'
+        price:780 
     },
     {
        id: '5',
@@ -55,7 +55,7 @@ const cakes = [
         },
         name: 'Double Chocolate Sandwich',
         description: 'A rich and creamy cheesecake topped with fresh mixed berries.',
-        price: '$80 MXN' 
+        price: 80 
     },
     {
         id: '6',
@@ -65,7 +65,7 @@ const cakes = [
         },
         name: 'OatCookies',
         description: 'A rich and creamy cheesecake topped with fresh mixed berries.',
-        price: '$65 MXN'
+        price: 65
     }
     
 ]
