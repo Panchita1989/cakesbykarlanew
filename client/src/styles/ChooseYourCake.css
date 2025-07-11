@@ -13,12 +13,6 @@ select{
 }
 h2{
   color: #5A5A54;
-}
-select option{
-  width: 80px;
-  padding: 4px;
-  font-size: 16px;
-  box-sizing: border-box; 
-}
+} 
 
 

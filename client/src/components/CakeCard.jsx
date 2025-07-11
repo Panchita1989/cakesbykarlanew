@@ -42,10 +42,11 @@ export default function CakeCard(props) {
             <div className='p-4'>
                 <h2 className="text-xl font-semibold text-gray-800">{props.name}</h2>
                 <p className="mt-2 text-gray-600">{props.description}</p>
-                <p className="mt-4 text-lg font-medium text-gray-900">{props.price}</p>
+                <p className="mt-4 text-lg font-medium text-gray-900">${props.price} MXN</p>
             </div>         
             <form className="p-4 border-t" onSubmit={handleAdd}>
-                    <select  className='option'                
+                    <select  className='option'   
+                        style={{width: '80px'}}             
                         name="quantity"
                         value={quantity}
                         onChange = {(e) => setQuantity(e.target.value)}
