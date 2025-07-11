@@ -13,6 +13,32 @@ select{
 }
 h2{
   color: #5A5A54;
-} 
+}
 
+.slide-message {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #489806; /* grün */
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  animation: slideInOut 3s forwards;
+  font-weight: bold;
+}
 
+@keyframes slideInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  10%, 90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}

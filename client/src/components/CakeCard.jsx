@@ -1,8 +1,10 @@
 import '../styles/ChooseYourCake.css'
 import { useState } from "react";
 
+
 export default function CakeCard(props) {
     const[quantity, setQuantity] = useState(1)
+    
 
     const handleAdd = async (e) =>{
         e.preventDefault()
@@ -26,6 +28,9 @@ export default function CakeCard(props) {
             })
             const result = await res.json()
             console.log('Adding was successfull:', result)
+
+            props.onAdd && props.onAdd()
+            
         } catch (err) {
             console.error(err)
         }

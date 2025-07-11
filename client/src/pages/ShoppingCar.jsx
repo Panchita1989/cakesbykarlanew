@@ -2,6 +2,7 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import '../styles/ShoppingCar.css'
 import {Link} from 'react-router-dom'
+import SlideMessage from '../components/SlideMessage'
 
 
 export default function ShoppingCart(){
