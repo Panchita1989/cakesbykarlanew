@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
 import '../styles/ShoppingCar.css'
+import {Link} from 'react-router-dom'
 
 
 export default function ShoppingCart(){
@@ -23,17 +24,17 @@ export default function ShoppingCart(){
     },[])
 
     function increaseQuantity(id) {
-        setCakes(prevCakes => {
+        setCakes(prevCakes => 
             prevCakes.map(cake => {
-                if(cake._id === id){
+                if(cake._id === id && cake.quantity < 10){
                     return{
                         ...cake,
-                        quantity: cake.quantity + 1
+                        quantity: Number(cake.quantity) + 1
                     }
                 }
                 return cake
             })
-        })
+        )
     }
     function decreaseQuantity(id) {
         setCakes(prevCakes =>
@@ -43,7 +44,7 @@ export default function ShoppingCart(){
                         ...cake,
                         quantity: cake.quantity - 1
                     }
-                }
+            }
                 return cake
             })
         )
@@ -77,6 +78,7 @@ export default function ShoppingCart(){
         <>
         <div className="min-h-screen bg-gray-100 p-6">
         <h1 className="text-xl font-bold mb-6">Your Cart 🛒</h1>    
+        <Link to='/choose'><button>Keep Shopping</button></Link>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
         {cakes.map((cake) => (
             <article key={cake._id} className= 'bg-white border rounded-lg shadow-lg overflow-hidden'>
