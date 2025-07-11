@@ -2,26 +2,38 @@ const passport = require('passport')
 const validator = require('validator')
 const Cake = require('../model/Cake')
 
-exports.postCake = async (req, res, next) => {
+exports.postCake = async (req, res, next) => {                            //Function for adding a cake item to the shopping cart
   console.log("REQ.BODY:", req.body)
   try {
-    const {id, image, name, description, quantity, price} = req.body
-    
-    const itemData = {
-      cakeId: id,
+    const {id, image, name, description, quantity, price} = req.body      // Destructure cake properties from the request body (either for a new cake or an existing one)
+
+
+    const existingItem = await Cake.findOne({name})                       // Variable to Check if an item with the same name already exists
+
+    if(existingItem){                                                     // If the item already exists, increase the quantity by the amount in the request
+      existingItem.quantity += quantity
+      await existingItem.save()                                           //Save the updated quantity in the existing item
+
+      return res.status(200).json({                                       // Return a 200 OK response with the updated item
+        msg:'quantity updated for existingItem',
+        item: existingItem                                                // item is now existingItem
+      })
+    }
+
+    const newItem = await Cake.create({                                  // If the item does not exist, create a new one in the database
+      cakeId: id,                   
       name,
       image,
       description,
       price,
       quantity
-    }
-    if(req.user){
-      itemData.user = req.user._id
-    }
-    const item = await Cake.create(itemData)
-    res.status(201).json({
-      msg: 'Item added to Cart.', item})
-  } catch (error) {
+    })
+    return res.status(201).json({                                       // Return a 201 Created response with the new item
+      msg:'New item created and added to cart',
+      item: newItem                                                     // the given back item will be the new Item
+    })
+    
+  } catch (error) {                                                    // If an error occurs, pass it to the error-handling middleware
     return next(error);
   }
 }
