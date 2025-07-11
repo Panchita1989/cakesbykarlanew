@@ -89,10 +89,10 @@ export default function ShoppingCart(){
         <>
         <div className="min-h-screen bg-gray-100 p-6">
         <h1 className="text-xl font-bold mb-6">Your Cart 🛒</h1>    
-        <Link to='/choose'><button>Keep Shopping</button></Link>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+        <Link to='/choose'><button className='keepShopping'>Keep Shopping</button></Link>
+        <div className="flex flex-wrap justify-center gap-6">
         {cakes.map((cake) => (
-            <article key={cake._id} className= 'bg-white border rounded-lg shadow-lg overflow-hidden'>
+            <article key={cake._id} className="bg-white border rounded-lg shadow-lg overflow-hidden w-60">
                 <img 
                     src={cake.image} 
                     alt={cake.name}
