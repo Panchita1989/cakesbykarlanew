@@ -129,7 +129,7 @@ export default function ShoppingCart(){
         </div>
         <button>✅ Checkout </button>
         <button 
-            onClick={() => handleDeleteAll()}>🗑️ Delete all</button>
+            onClick={handleDeleteAll}>🗑️ Delete all</button>
         </>
     )
 }
