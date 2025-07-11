@@ -20,7 +20,7 @@ const formConfig = {
     },
     login: {
         title: 'Login',
-        linkTo: '/signeup',
+        linkTo: '/signup',
         option: 'SignUp',
         action: '/auth/login',
         method: 'POST',
@@ -34,8 +34,8 @@ const formConfig = {
             alt: 'brownie'
         },
     },
-    signeup:{
-        title: 'Signe Up',
+    signup:{
+        title: 'Signup',
         linkTo: '/login',
         action: '/auth/signup',
         method: 'POST',
@@ -46,16 +46,31 @@ const formConfig = {
             {id: '3', label:'birthday', name: 'birthday', type: 'text', placeholder: 'birthday (dd.mm.yyyy)', required: true},
             {id: '4', label: 'E-Mail', name: 'email', type: 'email', placeholder: 'E-Mail', required: true},
             {id: '5', label: 'confirm E-Mail', name: 'confirmEmail', type: 'email', placeholder: 'Confirm E-Mail', required: true},
-            {id: '6', label: 'Password', name: 'password', type: 'password', placeholder: 'Password', required: true},
-            {id: '7', label: 'Confirm Password', name: 'confirmPassword', type: 'password', placeholder: 'Confirm Password', required: true},
-            {id: '8', label: 'Signe Up', name: 'submit', type: 'submit', content: 'Sign Up'}
+            {id: '6', label: 'Phone', name:'phone', type: 'phone', placeholder:'e.g. +52 123 456 7890', required: true},
+            {id: '7', label: 'Password', name: 'password', type: 'password', placeholder: 'Password', required: true},
+            {id: '8', label: 'Confirm Password', name: 'confirmPassword', type: 'password', placeholder: 'Confirm Password', required: true},
+            {id: '9', label: 'Signe Up', name: 'submit', type: 'submit', content: 'Sign Up'}
         ],
         image:{
             src:brownie,
             alt:'brownie'
         }
 
-    }
-}
+    },
+    checkOut:{
+        title: 'Checkout',
+        linkTo: '/checkout',
+        action: '/cake/checkout',
+        method: 'GET',
+        option: 'Checkout',
+        fields:[
+            {id: '1', label:'name', name: 'name', type: 'text', placeholder: 'Name', required: true},
+            {id: '2', label:'surname', name: 'surname', type: 'text', placeholder: 'Surename', required: true},
+            {id: '4', label: 'E-Mail', name: 'email', type: 'email', placeholder: 'E-Mail', required: true},
+            {id: '6', label: 'Phone', name:'phone', type: 'phone', placeholder:'e.g. +52 123 456 7890', required: true},
+            {id: '7', label: 'date', name: 'orderDate', type: 'text', required: true}
+        ]
+    }}
+
 
 export default formConfig

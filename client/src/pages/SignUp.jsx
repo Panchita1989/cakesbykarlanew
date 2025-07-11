@@ -1,11 +1,11 @@
-import FormWrapper from '../components/FormWrapper'
+import FormWrapper from '../components/FormWrapper.jsx'
 import formConfig from '../data/formData.js'
 import '../styles/contact.css'
 import {useNavigate} from 'react-router-dom'
 import { useState } from "react";
 
 
-export default function SigneUp (){
+export default function SignUp (){
     const navigate = useNavigate()
     const[error, setError] = useState([])
 

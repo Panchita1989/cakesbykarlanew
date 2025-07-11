@@ -1,5 +1,4 @@
 import FormWrapper from '../components/FormWrapper'
-import formConfig from '../data/formData.js'
 import '../styles/contact.css'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
