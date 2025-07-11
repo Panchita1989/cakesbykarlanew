@@ -38,9 +38,10 @@ exports.getCake = async(req, res) => {
 }
 exports.deleteCake = async(req, res) =>{
   try {
-    const deletedCake = await Cake.findByIdAndDelete(req.params.itemId)
+    const cakeId = req.params.itemId
+    const deletedCake = await Cake.findByIdAndDelete(cakeId)
     console.log('Deleted Item')
-    return res.status(200).json()
+    return res.status(200).json({message: 'Item deleted successfully'})
     
   } catch (error) {
     console.error(error)

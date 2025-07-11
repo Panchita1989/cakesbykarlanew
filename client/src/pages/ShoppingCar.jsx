@@ -16,7 +16,7 @@ export default function ShoppingCart(){
                 ...cake, 
                 quantity: cake.quantity || 1
             }))
-            console.log('loaded cakes:', data)
+            console.log('loaded cakes:', data) // wird 2 mal ausgeführt
             setCakes(dataWithQuantity)
         })
         .catch(err => console.error(err))
@@ -55,7 +55,7 @@ export default function ShoppingCart(){
 
     async function handleDelete(cakeId) {
         try {
-            const res = await fetch(`http://localhost:5000/cake/delete/${cakeId}`,{
+            const res = await fetch(`http://localhost:5000/cakes/delete/${cakeId}`,{
                 method:'DELETE',
                 credentials: 'include'
             })
