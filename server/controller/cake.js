@@ -5,22 +5,20 @@ const Cake = require('../model/Cake')
 exports.postCake = async (req, res, next) => {
   console.log("REQ.BODY:", req.body)
   try {
-    if(!req.user){
-      return res.status(401).json({msg: 'Not authorized. Please log in'})
-    }
-
     const {id, image, name, description, quantity, price} = req.body
-    const userId = req.user._id
-
-    const item = await Cake.create({
-      user: userId,
+    
+    const itemData = {
       cakeId: id,
       name,
       image,
       description,
       price,
       quantity
-    })
+    }
+    if(req.user){
+      itemData.user = req.user._id
+    }
+    const item = await Cake.create(itemData)
     res.status(201).json({
       msg: 'Item added to Cart.', item})
   } catch (error) {
@@ -51,7 +49,7 @@ exports.deleteCake = async(req, res) =>{
 
 exports.deleteAll = async(req, res) => {
   try {
-    const deleteAll = await Cake.deletMany()
+    const deleteAll = await Cake.deleteMany()
     console.log('All item deleted')
     return res.status(200).json({message: 'All items deleted'})
   } catch (error) {

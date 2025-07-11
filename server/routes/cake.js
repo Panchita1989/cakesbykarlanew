@@ -3,10 +3,9 @@ const router = express.Router()
 const cakeController = require('../controller/cake')
 const {ensureAuth, ensureGuest} = require('../middleware/auth')
 
-router.get('/', ensureAuth, cakeController.getCake)
-router.post('/add', ensureAuth, cakeController.postCake)
-//router.put("/change:itemId", ensureAuth, cartController.getCurrentUser)
-router.delete('/delete/:itemId', ensureAuth, cakeController.deleteCake)
-router.delete('/delete', ensureAuth, cakeController.deleteAll)
+router.get('/', cakeController.getCake)
+router.post('/add', cakeController.postCake)
+router.delete('/delete/:itemId', cakeController.deleteCake)
+router.delete('/delete', cakeController.deleteAll)
 
 module.exports = router
