@@ -7,5 +7,6 @@ router.get('/', ensureAuth, cakeController.getCake)
 router.post('/add', ensureAuth, cakeController.postCake)
 //router.put("/change:itemId", ensureAuth, cartController.getCurrentUser)
 router.delete('/delete/:itemId', ensureAuth, cakeController.deleteCake)
+router.delete('/delete', ensureAuth, cakeController.deleteAll)
 
 module.exports = router

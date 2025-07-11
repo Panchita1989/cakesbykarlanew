@@ -65,12 +65,23 @@ export default function ShoppingCart(){
                 throw new Error("Deleting not possible");                
             }
             const data = await res.json()
-            console.log(data)
-
             setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
 
         } catch (error) {
             console.error(error)
+        }
+    }
+    async function handleDeleteAll() {
+        try {
+            const res = await fetch('http://localhost:5000/cakes/delete/', {
+                method: 'DELETE',
+                credentials: 'include'
+            })
+            const data = await res.json()
+            setCakes([])
+        } catch (error) {
+            console.error(error);
+            
         }
     }
 
@@ -117,7 +128,8 @@ export default function ShoppingCart(){
             <span>Click Checkout to finish your order</span>
         </div>
         <button>✅ Checkout </button>
-        <button>🗑️ Delete all</button>
+        <button 
+            onClick={() => handleDeleteAll()}>🗑️ Delete all</button>
         </>
     )
 }
