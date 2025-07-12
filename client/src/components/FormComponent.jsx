@@ -1,20 +1,55 @@
 import {Link} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import '../styles/contact.css'
 import formData from '../data/formData'
+import handleLogin from '../logic/handleLogin'
+import handleSignup from '../logic/handleSignup'
 
 export default function FormComponent({formType, prefillData}) {
-    if(!formType) return <div>Loading Form....</div>
-    const currentForm = formData[formType]                                                                                                        // to have access to the current form we use the method .find() which goes to our formData and checks which form has the same name as our formType from FormPage
-    
+    const[error, setError]= useState([])
+    const navigate = useNavigate()
+
+    const currentForm = formData[formType]
+
     if(!currentForm){
         return <div>Form not found</div>
+    }    
+
+    const submitHandlers = {
+        login: handleLogin, 
+        signup: handleSignup
     }
+    
+    
+
+    const handleSubmit = async(e)=>{
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        const handler = submitHandlers[formType]
+
+        if(handler){
+           await handler(formData, setError, navigate)
+        }else{
+            console.warn('No handler for this Formtype:', formType)
+        }
+    }                                                                                                        // to have access to the current form we use the method .find() which goes to our formData and checks which form has the same name as our formType from FormPag
 
     return(                                                                             
             <div className='wrapperForm'>
                 <h2>{currentForm.title}</h2>
+
                 <Link to={currentForm.linkTo} className='login' >{currentForm.option}</Link>
-                <form>
+
+                {error.length > 0 && (
+                    <ul className='error-list'>
+                        {error.map((err, i)=> (
+                            <li key={i}>{err.msg}</li>
+                        ))}
+                    </ul>
+                )}
+
+                <form onSubmit={handleSubmit}>
                     {currentForm.fields.map((field)=>{
                     if(field.type === 'textarea') {
                      return (  
