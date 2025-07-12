@@ -33,13 +33,13 @@ export default function Profile (){
 
     if(!user){
         return(
-            <>
+            <section className='profile'>
                 <p>Please go to <Link to='/login' className='link'>Login</Link></p>
-            </>
+            </section>
         )
     }
     return (
-        <>
+        <section className='profile'>
             <h1>🍰 Welcome back, {user.name}!</h1>
             <p> We're so happy to see you again. <br />
                 From your <Link to='/choose' className='link'>favorite bakes</Link> to custom-made creations – your sweet journey starts here.
@@ -54,6 +54,6 @@ export default function Profile (){
      
 
             
-        </>
+        </section>
     )
 }

@@ -20,7 +20,7 @@ import Checkout from './pages/Checkout'
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
  return(
-  <div className='app-container'>
+  <>
     <Outlet />
     <ScrollToTop />
     <Header />
@@ -37,7 +37,7 @@ function App() {
       <Route path='/checkout' element={<FormPage />} />
   </Routes>
   <Footer />
-  </div>
+  </>
  )  
 }
 
