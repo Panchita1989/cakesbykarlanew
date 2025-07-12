@@ -10,6 +10,7 @@ const cors = require('cors')
 const authRoutes = require('./routes/auth')
 const cakeRoutes = require('./routes/cake')
 const orderRoutes = require('./routes/order')
+const contactRoutes = require('./routes/message')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -50,6 +51,7 @@ app.use(passport.session())
 app.use('/user', authRoutes)
 app.use('/cakes', cakeRoutes)
 app.use('/checkout', orderRoutes);
+app.use('/contact', contactRoutes)
 
 
 

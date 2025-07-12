@@ -1,6 +1,5 @@
 import '../styles/contact.css'
 import FormWrapper from '../components/FormWrapper'
-import formConfig from '../data/formData.js'
 
 export default function Contact(){
     return(

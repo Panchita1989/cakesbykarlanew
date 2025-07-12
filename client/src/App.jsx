@@ -13,6 +13,7 @@ import FormPage from './pages/FormPage'
 import ScrollToTop from './components/ScrollToTop'
 import ShoppingCar from './pages/ShoppingCar'
 import Profile from './pages/Profile'
+import ThankYouPage from './pages/ThankYouPage'
 
 
 
@@ -33,6 +34,7 @@ function App() {
       <Route path='/shoppingCar' element={<ShoppingCar />}/>
       <Route path='/profile' element={<Profile />} />
       <Route path='/checkout' element={<FormPage />} />
+      <Route path='thankyou' element={<ThankYouPage />} />
   </Routes>
   <Footer />
   </>

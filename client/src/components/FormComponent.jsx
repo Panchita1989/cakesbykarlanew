@@ -6,6 +6,7 @@ import formData from '../data/formData'
 import handleLogin from '../logic/handleLogin'
 import handleSignup from '../logic/handleSignup'
 import handleSendOrder from '../logic/handleSendOrder'
+import handleSendMessage from '../logic/handleSendMessage'
 
 export default function FormComponent({formType, prefillData, onSendOrder}) {
     const[error, setError]= useState([])
@@ -20,7 +21,8 @@ export default function FormComponent({formType, prefillData, onSendOrder}) {
     const submitHandlers = {
         login: handleLogin, 
         signup: handleSignup,
-        checkout: handleSendOrder
+        checkout: handleSendOrder,
+        contact: handleSendMessage
     }
     
     
