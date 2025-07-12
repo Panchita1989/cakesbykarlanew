@@ -9,6 +9,7 @@ const connectDB = require('./config/database')
 const cors = require('cors')
 const authRoutes = require('./routes/auth')
 const cakeRoutes = require('./routes/cake')
+const orderRoutes = require('./routes/order')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -48,6 +49,9 @@ app.use(passport.session())
 
 app.use('/user', authRoutes)
 app.use('/cakes', cakeRoutes)
+app.use('/checkout', orderRoutes);
+
+
 
 app.listen(process.env.PORT, ()=> {
     console.log('Server is running, you better catch it!')

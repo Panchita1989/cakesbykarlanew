@@ -6,7 +6,9 @@ import { useState } from "react";
 
 
 export default function ChooseYourCake() {
+
     const[showMessage, setShowMessage] = useState(false)
+    const[slideMessage, setSlideMessage] = useState('')
 
     const cakeElements = data.map(cake => {
         return(
@@ -18,8 +20,9 @@ export default function ChooseYourCake() {
                 description={cake.description}
                 price={cake.price}
                 onAdd={()=>{
+                    setSlideMessage(' 🎂 Cake has been added to your cart!')
                     setShowMessage(true)
-                    setTimeout(() => setShowMessage(false),3000)
+                    setTimeout(() => setShowMessage(false),1000)
                 }}
             />
         )
@@ -27,7 +30,7 @@ export default function ChooseYourCake() {
     return(
         <main className='px-4 py-16 sm:px-6 sm:py-24 lg:px-8'>
             <h2 className="text-2xl font-bold tracking-tight text-gray-900">Choose Your Cake</h2>
-            {showMessage && <SlideMessage />}
+            {showMessage && <SlideMessage message={slideMessage} visible={showMessage} />}
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {cakeElements}
             </div>

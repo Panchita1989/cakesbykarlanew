@@ -58,7 +58,7 @@ const formConfig = {
 
     },
     checkout:{
-        title: 'Checkout',
+        title: '',
         linkTo: '/checkout',
         action: '/cake/checkout',
         method: 'GET',

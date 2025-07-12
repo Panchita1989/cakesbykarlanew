@@ -5,8 +5,9 @@ import '../styles/contact.css'
 import formData from '../data/formData'
 import handleLogin from '../logic/handleLogin'
 import handleSignup from '../logic/handleSignup'
+import handleSendOrder from '../logic/handleSendOrder'
 
-export default function FormComponent({formType, prefillData}) {
+export default function FormComponent({formType, prefillData, onSendOrder}) {
     const[error, setError]= useState([])
     const navigate = useNavigate()
 
@@ -18,7 +19,8 @@ export default function FormComponent({formType, prefillData}) {
 
     const submitHandlers = {
         login: handleLogin, 
-        signup: handleSignup
+        signup: handleSignup,
+        checkout: handleSendOrder
     }
     
     
@@ -27,6 +29,11 @@ export default function FormComponent({formType, prefillData}) {
         e.preventDefault()
         const formData = new FormData(e.target)
         const handler = submitHandlers[formType]
+
+        if(formType === 'checkout'){
+            await onSendOrder(formData, setError, navigate)
+            return
+        }
 
         if(handler){
            await handler(formData, setError, navigate)

@@ -6,12 +6,15 @@ import formConfig from "../data/formData.js";
 import {useEffect, useState} from 'react'
 import { useLocation } from 'react-router-dom'
 import FormComponent from './FormComponent'
+import handleSendOrder from '../logic/handleSendOrder'
 
 
 export default function FormWrapper({formType, prefillData}){
 
     const location = useLocation()
     const [cakes, setCakes] = useState([])
+    const [startDate, setStartDate] = useState(new Date());
+
 
     useEffect(()=>{
         if(formType === 'checkout'){
@@ -52,14 +55,29 @@ export default function FormWrapper({formType, prefillData}){
     if(!formConfig[activeForm]){
         return <div>Form not found</div>
     }
-    return (
-        <div className="formWrapper">
-            {image ? (
-            imagePosition === 'right' ? (
+
+  return (
+  <div className="formWrapper">
+    {image ? (
+      imagePosition === 'right' ? (
         <>
           <div className={`formSection ${direction}`}>
-            {activeForm === 'checkout' && <OrderSummary cakes={cakes} />}
-            <FormComponent formType={activeForm} prefillData={prefillData} />
+            {activeForm === 'checkout' && 
+            <OrderSummary 
+              cakes={cakes}
+              startDate={startDate}
+              setStartDate={setStartDate} />}
+            <FormComponent 
+              formType={activeForm}
+              prefillData={prefillData}
+              startDate={startDate}
+              onSendOrder={
+                activeForm === 'checkout'
+                  ? (formData, setError, navigate) =>
+                      handleSendOrder(formData, setError, navigate, cakes, startDate)
+                  : undefined
+              }
+            />
           </div>
           <div className={`imageSection ${direction}`}>
             <img src={image.src} alt={image.alt} />
@@ -71,18 +89,40 @@ export default function FormWrapper({formType, prefillData}){
             <img src={image.src} alt={image.alt} />
           </div>
           <div className={`formSection ${direction}`}>
-            <FormComponent formType={activeForm} prefillData={prefillData} />
+            <FormComponent 
+              formType={activeForm} 
+              prefillData={prefillData}
+              startDate={startDate}
+              onSendOrder={
+                activeForm === 'checkout'
+                  ? (formData, setError, navigate) =>
+                      handleSendOrder(formData, setError, navigate, cakes, startDate)
+                  : undefined
+              }
+            />
           </div>
         </>
       )
     ) : (
       <div className="formSection full">
         {activeForm === 'checkout' && <OrderSummary cakes={cakes} />}
-        <FormComponent formType={activeForm} prefillData={prefillData} />
+        <FormComponent
+          formType={activeForm}
+          prefillData={prefillData}
+          startDate={startDate}
+          onSendOrder={
+            activeForm === 'checkout'
+              ? (formData, setError, navigate) =>
+                  handleSendOrder(formData, setError, navigate, cakes,startDate)
+              : undefined
+          }
+        />
       </div>
     )}
   </div>
-);
+)
+
+
 
 }
 

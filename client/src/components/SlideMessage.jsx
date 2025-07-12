@@ -1,23 +1,22 @@
 import { useState, useEffect } from "react";
-import React from 'react'
-import '../styles/ChooseYourCake.css'
+import '../styles/ChooseYourCake.css';
 
-export default function SlideMessage(){
-    const[showMessage, setShowMessage] = useState(true)
-    const message = ' 🎂 Cake has been added to your cart!'
+export default function SlideMessage({ message, visible }) {
+  const [show, setShow] = useState(visible);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setShowMessage(false)
-        }, 3000);
-       
-        return() => clearTimeout(timer)
-    },[])
-    if(!showMessage){
-        return null
+  useEffect(() => {
+    setShow(visible);
+    if (visible) {
+      const timer = setTimeout(() => {
+        setShow(false);
+      }, 1000);
+      return () => clearTimeout(timer);
     }
-    return(
-        <div className='slide-message'>{message}</div>
-    )
-    
+  }, [visible]); 
+
+  if (!show) return null;
+
+  return (
+    <div className='slide-message'>{message}</div>
+  );
 }

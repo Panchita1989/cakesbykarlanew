@@ -26,6 +26,7 @@ export default function OrderSummary(){
     if(!cakes.length){
         return <p>No order found</p>
     }
+
     const getTotalPrice = (cake) => cake.price * cake.quantity
     const totalPriceOrder = cakes.reduce((acc, c) => acc + getTotalPrice(c), 0)
 
@@ -51,9 +52,11 @@ export default function OrderSummary(){
                     
                 />
             </section>
-            <p>Please pay 50% to confirm order</p>
-            <p>Prepayment: ${(totalPriceOrder * 0.5)}</p>
-            <p>Payment for Banktransfer or in the Restaurant Tigre Pétanque Bacalar</p>
+            <section className='payment'>
+                <p>Please pay 50% to confirm order</p>
+                <p>Prepayment: ${(totalPriceOrder * 0.5)}</p>
+                <p>Payment for Banktransfer or in the Restaurant Tigre Pétanque Bacalar</p>
+            </section>
         </div>
     )
 }
