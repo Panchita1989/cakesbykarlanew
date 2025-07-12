@@ -11,8 +11,10 @@ exports.getCurrentUser = (req, res) => {
         id: req.user._id,
         name: req.user.name,
         surname: req.user.surname,
-        email: req.user.email
+        email: req.user.email,
+        phone: req.user.phone
     })
+    
 }
 
 exports.postLogin = async (req, res, next) => {
@@ -58,6 +60,7 @@ exports.postLogin = async (req, res, next) => {
         name: user.name,
         surname: user.surname,
         email: user.email,
+        phone: user.phone
       },
     });
   } catch (error) {
@@ -74,7 +77,8 @@ exports.postSignup = async (req, res, next) => {
   try {
     console.log("Signup Route reached");
 
-    const { name, surname, birthday, email, confirmEmail, password, confirmPassword } = req.body;
+    const { name, surname, birthday, email, confirmEmail, password, confirmPassword, phone } = req.body;
+    console.log(req.body)
     const validationErrors = [];
     const regex = /[A-Za-z]/
 
@@ -100,7 +104,8 @@ exports.postSignup = async (req, res, next) => {
       surname,
       birthday,
       email: normalizedEmail,
-      password
+      password,
+      phone
     });
 
     await user.save();
@@ -116,7 +121,8 @@ exports.postSignup = async (req, res, next) => {
           name: user.name,
           surname: user.surname,
           birthday: user.birthday,
-          email: user.email
+          email: user.email,
+          phone: user.phone
         }
       });
     });

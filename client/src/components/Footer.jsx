@@ -1,7 +1,8 @@
 import React from 'react';
+import '../styles/Footer.css'
 
 export default function Footer(){
     return(
-        <div className="footer">COPYRIGHT &copy; Franciska Landwehr, 2025</div>
+        <footer className="footer">COPYRIGHT &copy; Franciska Landwehr, 2025</footer>
     )
 }

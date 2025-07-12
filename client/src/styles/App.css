@@ -121,3 +121,12 @@
   transition: left 0.5s ease-in-out;
   pointer-events: auto;
 }
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container > *:first-child {
+  flex: 1; /* das Haupt-Outlet nimmt den verfügbaren Platz */
+}

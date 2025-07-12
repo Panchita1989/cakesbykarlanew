@@ -1,5 +1,6 @@
 import React from 'react'
 import {Routes, Route} from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { useState } from "react";
 import './styles/App.css'
 import './styles/main.css'
@@ -19,26 +20,25 @@ import Checkout from './pages/Checkout'
 function App() {
   const [isCartOpen, setIsCartOpen] = useState(false)
  return(
-  <>
-  <ScrollToTop />
-  <Header />
-  <SlideInMenu setIsCartOpen={setIsCartOpen} />
-  <Routes>
-    <Route path="/" element={<LandingPage />} />
-    <Route path='/choose' element={<ChooseYourCake />} />
-    <Route path ='/contact' element={<FormPage />} />
-    <Route path='/login' element={<FormPage />}/>
-    <Route path='/signup' element={<FormPage />}/>
-    <Route path='/buildYourOwn' element={<BuildMyCake />}/>
-    <Route path='/shoppingCar' element={<ShoppingCar />}/>
-    <Route path='/profile' element={<Profile />} />
-    <Route path='/checkout' element={<FormPage />} />
+  <div className='app-container'>
+    <Outlet />
+    <ScrollToTop />
+    <Header />
+    <SlideInMenu setIsCartOpen={setIsCartOpen} />
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path='/choose' element={<ChooseYourCake />} />
+      <Route path ='/contact' element={<FormPage />} />
+      <Route path='/login' element={<FormPage />}/>
+      <Route path='/signup' element={<FormPage />}/>
+      <Route path='/buildYourOwn' element={<BuildMyCake />}/>
+      <Route path='/shoppingCar' element={<ShoppingCar />}/>
+      <Route path='/profile' element={<Profile />} />
+      <Route path='/checkout' element={<FormPage />} />
   </Routes>
   <Footer />
-
-  </>
- )
-  
+  </div>
+ )  
 }
 
 export default App

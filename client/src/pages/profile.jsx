@@ -47,10 +47,11 @@ export default function Profile (){
 
                 Let’s bake some joy together!      
             </p>
-            <button>My previous Order</button>
-            <button>Edit Profile</button>
-            <Link to='/contact'><button>Contact Me</button></Link>
-            <Logout />
+            <button className='btn'>My previous Order</button>
+            <button className='btn'>Edit Profile</button>
+            <Link to='/contact'><button className='btn'>Contact Me</button></Link>
+            <Logout className='btn' />
+     
 
             
         </>

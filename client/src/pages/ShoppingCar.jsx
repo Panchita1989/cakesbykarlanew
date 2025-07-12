@@ -9,7 +9,12 @@ export default function ShoppingCart(){
     const [cakes, setCakes] = React.useState([])
 
     useEffect(()=>{
-         fetch('http://localhost:5000/cakes', {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId?
+            `http://localhost:5000/cakes?guestId=${guestId}`:
+            'http://localhost:5000/cakes'
+
+         fetch(url, {
             credentials: 'include'
         })
         .then((res) => res.json())
@@ -18,7 +23,7 @@ export default function ShoppingCart(){
                 ...cake, 
                 quantity: cake.quantity || 1
             }))
-            //console.log('loaded cakes:', data) 
+            console.log('loaded cakes:', data) 
             setCakes(dataWithQuantity)
         })
         .catch(err => console.error(err))
@@ -56,35 +61,691 @@ export default function ShoppingCart(){
     const totalPriceOrder = cakes.reduce((acc, c) => acc + getTotalPrice(c),0 )
 
     async function handleDelete(cakeId) {
-        try {
-            const res = await fetch(`http://localhost:5000/cakes/delete/${cakeId}`,{
-                method:'DELETE',
-                credentials: 'include'
-            })
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
 
-            if(!res.ok){
-                throw new Error("Deleting not possible");                
-            }
-            const data = await res.json()
-            setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
 
-        } catch (error) {
-            console.error(error)
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
         }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
     }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDelete(cakeId) {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete/${cakeId}`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        if (!res.ok) {
+            throw new Error("Deleting not possible")
+        }
+
+        const data = await res.json()
+        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
     async function handleDeleteAll() {
-        try {
-            const res = await fetch('http://localhost:5000/cakes/delete/', {
-                method: 'DELETE',
-                credentials: 'include'
-            })
-            const data = await res.json()
-            setCakes([])
-        } catch (error) {
-            console.error(error);
-            
-        }
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
     }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+    async function handleDeleteAll() {
+    try {
+        const guestId = localStorage.getItem('guestId')
+        const url = guestId
+            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+            : `http://localhost:5000/cakes/delete`
+
+        const res = await fetch(url, {
+            method: 'DELETE',
+            credentials: 'include'
+        })
+
+        const data = await res.json()
+        setCakes([])
+
+    } catch (error) {
+        console.error(error)
+    }
+}
 
     return(
         <>

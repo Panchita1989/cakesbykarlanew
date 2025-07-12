@@ -1,6 +1,16 @@
 const mongoose = require("mongoose");
 
 const CakeSchema = new mongoose.Schema({
+  userId: { 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User', required: false 
+  },
+  guestId: { 
+    type: String, required: false 
+  },
+  cakeId: { 
+    type: String 
+  },
   name: {
     type: String,
     required: true,
@@ -17,10 +27,7 @@ const CakeSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-  },
+  
   price:{
     type: Number,
     required: true

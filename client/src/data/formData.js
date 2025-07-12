@@ -46,7 +46,7 @@ const formConfig = {
             {id: '3', label:'birthday', name: 'birthday', type: 'text', placeholder: 'birthday (dd.mm.yyyy)', required: true},
             {id: '4', label: 'E-Mail', name: 'email', type: 'email', placeholder: 'E-Mail', required: true},
             {id: '5', label: 'confirm E-Mail', name: 'confirmEmail', type: 'email', placeholder: 'Confirm E-Mail', required: true},
-            {id: '6', label: 'Phone', name:'phone', type: 'phone', placeholder:'e.g. +52 123 456 7890', required: true},
+            {id: '6', label: 'Phone', name:'phone', type: 'tel', placeholder:'e.g. +52 123 456 7890', required: true},
             {id: '7', label: 'Password', name: 'password', type: 'password', placeholder: 'Password', required: true},
             {id: '8', label: 'Confirm Password', name: 'confirmPassword', type: 'password', placeholder: 'Confirm Password', required: true},
             {id: '9', label: 'Signe Up', name: 'submit', type: 'submit', content: 'Sign Up'}
