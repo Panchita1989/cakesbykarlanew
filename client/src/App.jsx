@@ -13,6 +13,7 @@ import ScrollToTop from './components/ScrollToTop'
 import BuildMyCake from './pages/BuildMyCake'
 import ShoppingCar from './pages/ShoppingCar'
 import Profile from './pages/Profile'
+import Checkout from './pages/Checkout'
 
 
 function App() {

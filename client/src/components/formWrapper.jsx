@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/formWrapper.css'
 import '../styles/Contact.css'
+import OrderSummary from './OrderSummary'
 import formConfig from "../data/formData.js";
 import {useEffect, useState} from 'react'
 import { useLocation } from 'react-router-dom'
@@ -10,6 +11,19 @@ import FormComponent from './FormComponent'
 export default function FormWrapper({formType, prefillData}){
 
     const location = useLocation()
+    const [cakes, setCakes] = useState([])
+
+    useEffect(()=>{
+        if(formType === 'checkout'){
+            fetch('http://localhost:5000/cakes',{
+                credentials: 'include'
+            })
+            .then(res => res.json())
+            .then(data => setCakes(data))
+            .catch(err => console.error(err))
+        }
+    },[formType])
+
     const [activeForm, setActiveForm] = useState(formType)
     const [imagePosition, setImagePosition] = useState('right')
     const [direction, setDirection] = useState('none')
@@ -51,6 +65,7 @@ export default function FormWrapper({formType, prefillData}){
             {imagePosition === 'right' ? (
                 <>
                     <div className={`formSection ${direction}`}>
+                        {activeForm === 'checkout' && <OrderSummary cakes={cakes} />}
                         <FormComponent formType={activeForm} prefillData={prefillData}/>
                     </div>
                     <div className={`imageSection ${direction}`}>

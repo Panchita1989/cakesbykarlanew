@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import FormWrapper from '../components/formWrapper'
-import FormComponent from '../components/FormComponent'
-import formData from '../data/formData'
+//import FormComponent from '../components/FormComponent'
+//import formData from '../data/formData'
 
 
 export default function FormPage(){                                         //Building FormPage component to combine the logic from FormWrapper and FormComponent 

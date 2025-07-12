@@ -2,14 +2,14 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import '../styles/ShoppingCar.css'
 import {Link} from 'react-router-dom'
-import SlideMessage from '../components/SlideMessage'
+//import SlideMessage from '../components/SlideMessage'
 
 
 export default function ShoppingCart(){
     const [cakes, setCakes] = React.useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:5000/cakes', {
+         fetch('http://localhost:5000/cakes', {
             credentials: 'include'
         })
         .then((res) => res.json())
@@ -18,7 +18,7 @@ export default function ShoppingCart(){
                 ...cake, 
                 quantity: cake.quantity || 1
             }))
-            console.log('loaded cakes:', data) // wird 2 mal ausgeführt
+            //console.log('loaded cakes:', data) 
             setCakes(dataWithQuantity)
         })
         .catch(err => console.error(err))
@@ -128,7 +128,7 @@ export default function ShoppingCart(){
             <span>Your total order is: ${totalPriceOrder} MXN</span>
             <span>Click Checkout to finish your order</span>
         </div>
-        <button>✅ Checkout </button>
+        <Link to='/checkout'><button>✅ Checkout </button></Link>
         <button 
             onClick={handleDeleteAll}>🗑️ Delete all</button>
         </>
