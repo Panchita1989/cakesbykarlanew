@@ -50,6 +50,13 @@
     opacity: 0;
     animation: slideInFromRight 0.7s forwards;
 }
+.formSection.full {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 @keyframes slideInFromLeft {
   from {
     transform: translateX(-100%);

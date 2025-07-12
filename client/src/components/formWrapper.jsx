@@ -28,13 +28,6 @@ export default function FormWrapper({formType, prefillData}){
     const [imagePosition, setImagePosition] = useState('right')
     const [direction, setDirection] = useState('none')
 
-    const getInitialForm = () => {
-        if(location.pathname.includes('login')) return 'login'
-        if(location.pathname.includes('signup')) return 'signup'
-        if(location.pathname.includes('checkout')) return 'checkout'
-        return 'contact'
-    }
-
     useEffect(()=> {
         const path = location.pathname
         const newForm = path.includes('login') 
@@ -54,36 +47,43 @@ export default function FormWrapper({formType, prefillData}){
         }
     }, [location.pathname])
 
-    const image = formConfig[activeForm]?.image
+    const image = formConfig[activeForm]?.image ?? null
 
     if(!formConfig[activeForm]){
         return <div>Form not found</div>
     }
+    return (
+        <div className="formWrapper">
+            {image ? (
+            imagePosition === 'right' ? (
+        <>
+          <div className={`formSection ${direction}`}>
+            {activeForm === 'checkout' && <OrderSummary cakes={cakes} />}
+            <FormComponent formType={activeForm} prefillData={prefillData} />
+          </div>
+          <div className={`imageSection ${direction}`}>
+            <img src={image.src} alt={image.alt} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={`imageSection ${direction}`}>
+            <img src={image.src} alt={image.alt} />
+          </div>
+          <div className={`formSection ${direction}`}>
+            <FormComponent formType={activeForm} prefillData={prefillData} />
+          </div>
+        </>
+      )
+    ) : (
+      <div className="formSection full">
+        {activeForm === 'checkout' && <OrderSummary cakes={cakes} />}
+        <FormComponent formType={activeForm} prefillData={prefillData} />
+      </div>
+    )}
+  </div>
+);
 
-    return(
-        <div className='formWrapper'>
-            {imagePosition === 'right' ? (
-                <>
-                    <div className={`formSection ${direction}`}>
-                        {activeForm === 'checkout' && <OrderSummary cakes={cakes} />}
-                        <FormComponent formType={activeForm} prefillData={prefillData}/>
-                    </div>
-                    <div className={`imageSection ${direction}`}>
-                        <img src={image.src} alt={image.alt} />
-                    </div>
-                </>
-            ) : (
-                <>
-                    <div className={`imageSection ${direction}`}>
-                        <img src={image.src} alt={image.alt} />
-                    </div>
-                    <div className={`formSection ${direction}`}>
-                        <FormComponent formType={activeForm} prefillData={prefillData}/>
-                    </div>
-                </>        
-            )}
-        </div>
-    )
 }
 
 

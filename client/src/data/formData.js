@@ -68,13 +68,9 @@ const formConfig = {
             {id: '2', label:'surname', name: 'surname', type: 'text', placeholder: 'Surename', required: true},
             {id: '4', label: 'E-Mail', name: 'email', type: 'email', placeholder: 'E-Mail', required: true},
             {id: '6', label: 'Phone', name:'phone', type: 'phone', placeholder:'e.g. +52 123 456 7890', required: true},
-            {id: '7', label: 'date', name: 'orderDate', type: 'text', required: true},
-            {id: '8', label: 'confirm', name: 'submit', type: 'submit', content: 'confirm order'}
+            {id: '7', label: 'confirm', name: 'submit', type: 'submit', content: 'confirm order'}
         ],
-        image:{
-            src:brownie,
-            alt:'brownie'
-        }
+        image: null
     }}
 
 

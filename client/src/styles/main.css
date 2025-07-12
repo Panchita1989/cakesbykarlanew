@@ -21,13 +21,26 @@ a:hover{
   
 }
 button{
+  color: #5A5A54;
+  font-weight: 200;
+  border: none;
+  border-radius: 20px;
+  font-size: 15px;
+  padding: 10px 20px;
+  margin-top: 20px;   
+  border: 1px solid gray;
+}
+button{
     text-align: center;
     padding: 20px;    
     margin: 40px 40px 20px 0 ;
     cursor: pointer;
 }
 button:hover{
+    background-color: rgba(251, 170, 170, 0.9);
+    color: #e5e5d5;
+    transition: background-color 0.2s ease-in;
+    cursor: pointer;
     transform: scale(1.1);
     transition: transform 0.2s ease-in;
-
 }

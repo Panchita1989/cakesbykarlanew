@@ -1,0 +1,23 @@
+.react-datepicker__day--selected {
+  background-color: #ff69b4;
+}
+.react-datepicker-wrapper input {
+  border: 2px solid #888; /* dunklerer Rahmen */
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 200px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.react-datepicker-wrapper input:focus {
+  border-color: #ff69b4; /* pinker Fokusrahmen, z.B. passend zu deinem Design */
+  outline: none;
+}
+label{
+  display: block;
+}
+.datePicker-wrapper{
+  margin: 20px 0;
+}

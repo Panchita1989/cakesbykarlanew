@@ -11,10 +11,9 @@ import LandingPage from './pages/LandingPage'
 import ChooseYourCake from './pages/ChooseYourCake' 
 import FormPage from './pages/FormPage'
 import ScrollToTop from './components/ScrollToTop'
-import BuildMyCake from './pages/BuildMyCake'
 import ShoppingCar from './pages/ShoppingCar'
 import Profile from './pages/Profile'
-import Checkout from './pages/Checkout'
+
 
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
       <Route path ='/contact' element={<FormPage />} />
       <Route path='/login' element={<FormPage />}/>
       <Route path='/signup' element={<FormPage />}/>
-      <Route path='/buildYourOwn' element={<BuildMyCake />}/>
       <Route path='/shoppingCar' element={<ShoppingCar />}/>
       <Route path='/profile' element={<Profile />} />
       <Route path='/checkout' element={<FormPage />} />
