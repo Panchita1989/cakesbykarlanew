@@ -11,6 +11,10 @@ const authRoutes = require('./routes/auth')
 const cakeRoutes = require('./routes/cake')
 const orderRoutes = require('./routes/order')
 const contactRoutes = require('./routes/message')
+const { v4: uuidv4 } = require('uuid')
+const cookieParser = require('cookie-parser')
+
+
 
 require('dotenv').config({path: './config/.env'})
 
@@ -18,8 +22,10 @@ require('./config/passport')(passport)
 
 connectDB()
 
+app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
+
 
 app.use(logger('dev'))
 
@@ -44,6 +50,20 @@ app.use(
     })
   })
 )
+
+app.use((req, res, next) => {
+  if (!req.cookies.guestId && !req.user) {
+    const guestId = uuidv4()
+    res.cookie('guestId', guestId, {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 1 // 1 Tag gültig
+    })
+    req.guestId = guestId
+  } else {
+    req.guestId = req.cookies.guestId
+  }
+  next()
+})
 
 app.use(passport.initialize())
 app.use(passport.session())

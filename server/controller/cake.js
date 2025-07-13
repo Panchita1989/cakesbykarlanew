@@ -8,8 +8,8 @@ exports.postCake = async (req, res, next) => {
 
     const identifier = req.user
       ? { userId: req.user._id }
-      : guestId
-      ? { guestId }
+      : req.body.guestId
+      ? { guestId:req.body.guestId }
       : null
 
     if (!identifier) {
@@ -51,11 +51,12 @@ exports.postCake = async (req, res, next) => {
 // 🧁 GET /cakes?guestId=xyz
 exports.getCake = async (req, res) => {
   try {
-    const guestId = req.query.guestId
-    const identifier = req.user
-      ? { userId: req.user._id }
-      : guestId
-      ? { guestId }
+    const guestId = req.query.guestId || req.guestId
+    console.log('guestId from query', guestId)
+    console.log('req.user:', req.user)
+
+    const identifier = req.user ? { userId: req.user._id }
+      : req.query.guestId ? { guestId: req.query.guestId }
       : null
 
     if (!identifier) {
@@ -63,6 +64,7 @@ exports.getCake = async (req, res) => {
     }
 
     const cakes = await Cake.find(identifier)
+    console.log('cakes found: ',cakes)
     res.json(cakes)
   } catch (err) {
     res.status(500).json({ error: err.message })

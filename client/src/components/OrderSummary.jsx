@@ -8,6 +8,7 @@ import '../styles/orderSummary.css'
 export default function OrderSummary(){
     const[cakes, setCakes] = useState([])
     const[startDate, setStartDate] = useState(new Date())
+    
 
      useEffect(() => {
         const guestId = localStorage.getItem('guestId');

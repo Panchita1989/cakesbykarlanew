@@ -1,4 +1,4 @@
-import React from 'react'
+
 import '../styles/formWrapper.css'
 import '../styles/Contact.css'
 import OrderSummary from './OrderSummary'
@@ -7,6 +7,8 @@ import {useEffect, useState} from 'react'
 import { useLocation } from 'react-router-dom'
 import FormComponent from './FormComponent'
 import handleSendOrder from '../logic/handleSendOrder'
+import GetGuestId from '../utils/guestId';
+
 
 
 export default function FormWrapper({formType, prefillData}){
@@ -14,18 +16,28 @@ export default function FormWrapper({formType, prefillData}){
     const location = useLocation()
     const [cakes, setCakes] = useState([])
     const [startDate, setStartDate] = useState(new Date());
-
+    
 
     useEffect(()=>{
         if(formType === 'checkout'){
-            fetch('http://localhost:5000/cakes',{
-                credentials: 'include'
+          const guestId = GetGuestId()
+          console.log('Fetching cakes from: ', guestId)
+
+          fetch(`http://localhost:5000/cakes?guestId=${guestId}`,{
+              credentials: 'include'
             })
             .then(res => res.json())
-            .then(data => setCakes(data))
+            .then(data =>{ 
+              console.log('Cakes fetched: ', data)
+              setCakes(data)})
             .catch(err => console.error(err))
         }
     },[formType])
+
+    useEffect(() => {
+      console.log("Updated cakes:", cakes);
+    }, [cakes]);  // Reagiert auf Änderungen von cakes
+
 
     const [activeForm, setActiveForm] = useState(formType)
     const [imagePosition, setImagePosition] = useState('right')
@@ -105,8 +117,12 @@ export default function FormWrapper({formType, prefillData}){
       )
     ) : (
       <div className="formSection full">
-        {activeForm === 'checkout' && <OrderSummary cakes={cakes} />}
-        <FormComponent
+        {activeForm === 'checkout' && 
+          <OrderSummary 
+            cakes={cakes}
+            startDate={startDate}
+            setStartDate={setStartDate} />}
+          <FormComponent
           formType={activeForm}
           prefillData={prefillData}
           startDate={startDate}
@@ -121,9 +137,6 @@ export default function FormWrapper({formType, prefillData}){
     )}
   </div>
 )
-
-
-
 }
 
 

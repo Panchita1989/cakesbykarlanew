@@ -1,4 +1,4 @@
-import React from 'react'
+import  getGuestId  from '../utils/guestId'; // Passe den Pfad zu deinem Utility an
 import {useState, useEffect} from 'react'
 import '../styles/ShoppingCar.css'
 import {Link} from 'react-router-dom'
@@ -6,13 +6,15 @@ import {Link} from 'react-router-dom'
 
 
 export default function ShoppingCart(){
-    const [cakes, setCakes] = React.useState([])
+const [cakes, setCakes] = useState([])
+   console.log(cakes)
     useEffect(()=>{
-        const guestId = localStorage.getItem('guestId')
+        const guestId = getGuestId()
+        console.log(guestId)
         const url = guestId?
             `http://localhost:5000/cakes?guestId=${guestId}`:
             'http://localhost:5000/cakes'
-
+        console.log(url)
          fetch(url, {
             credentials: 'include'
         })
@@ -24,6 +26,7 @@ export default function ShoppingCart(){
             }))
             console.log('loaded cakes:', data) 
             setCakes(dataWithQuantity)
+            console.log(dataWithQuantity)
         })
         .catch(err => console.error(err))
     },[])

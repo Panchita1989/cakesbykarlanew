@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { getGuestId } from "../utils/guestId";
+import  getGuestId  from "../utils/guestId";
 import '../styles/ChooseYourCake.css';
 
 export default function CakeCard(props) {

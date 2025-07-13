@@ -4,6 +4,7 @@ const nodemailer = require('nodemailer')
 exports.postOrder = async (req, res, next) => {
   try {
     const { cakes, pickUpDate, customer } = req.body;
+    const guestId = req.user ? null : req.guestId
 
     if (!cakes || cakes.length === 0) {
       return res.status(400).json({ msg: 'No Cakes in your order' });
@@ -21,6 +22,8 @@ exports.postOrder = async (req, res, next) => {
       cakes,
       pickUpDate,
       customer,
+      userId: req.user ? req.user._id : undefined,
+      guestId: guestId || undefined
     });
 
     await newOrder.save();

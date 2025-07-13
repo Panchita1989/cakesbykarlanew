@@ -1,5 +1,5 @@
 
-export function getGuestId() {
+export default function getGuestId() {
   let guestId = localStorage.getItem('guestId');
   if (!guestId) {
     guestId = crypto.randomUUID();
