@@ -1,4 +1,0 @@
-[build]
-  base = "client"                # Das Verzeichnis, in dem Netlify nach Abhängigkeiten suchen soll
-  command = "npm run build"      # Der Build-Befehl, der ausgeführt werden soll
-  publish = "client/dist"        # Das Verzeichnis, das Netlify nach dem Build veröffentlichen soll

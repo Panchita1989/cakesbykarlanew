@@ -12,7 +12,7 @@ import ChooseYourCake from './pages/ChooseYourCake'
 import FormPage from './pages/FormPage'
 import ScrollToTop from './components/ScrollToTop'
 import ShoppingCar from './pages/ShoppingCar'
-import Profile from './pages/Profile.jsx'
+import Profile from './pages/Profile'
 import ThankYouPage from './pages/ThankYouPage'
 
 
