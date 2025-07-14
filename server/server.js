@@ -29,10 +29,11 @@ app.use(express.json())
 
 app.use(logger('dev'))
 
+const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';  // Default auf lokal, falls nicht gesetzt
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: clientUrl,
   credentials: true
-}))
+}));
 
 app.use(
   session({
