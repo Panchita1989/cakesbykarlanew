@@ -8,7 +8,7 @@ import handleSignup from '../logic/handleSignup'
 import handleSendOrder from '../logic/handleSendOrder'
 import handleSendMessage from '../logic/handleSendMessage'
 
-export default function FormComponent({formType, prefillData, onSendOrder}) {
+export default function FormComponent({formType, prefillData, startDate, setCakes, onSendOrder}) {
     const[error, setError]= useState([])
     const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ export default function FormComponent({formType, prefillData, onSendOrder}) {
         const handler = submitHandlers[formType]
 
         if(formType === 'checkout'){
-            await onSendOrder(formData, setError, navigate)
+            await onSendOrder(formData, setError, navigate, setCakes, startDate)
             return
         }
 

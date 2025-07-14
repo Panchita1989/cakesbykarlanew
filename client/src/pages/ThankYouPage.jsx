@@ -1,4 +1,7 @@
 export default function ThankYouPage() {
+
+  
+
   return (
     <div style={{ padding: '2rem', textAlign: 'center' }}>
       <h1>Thank you for your message!</h1>

@@ -1,10 +1,10 @@
 const Order = require('../model/Order');
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
 
 exports.postOrder = async (req, res, next) => {
   try {
     const { cakes, pickUpDate, customer } = req.body;
-    const guestId = req.user ? null : req.guestId
+    const guestId = req.user ? null : req.guestId;
 
     if (!cakes || cakes.length === 0) {
       return res.status(400).json({ msg: 'No Cakes in your order' });
@@ -23,7 +23,7 @@ exports.postOrder = async (req, res, next) => {
       pickUpDate,
       customer,
       userId: req.user ? req.user._id : undefined,
-      guestId: guestId || undefined
+      guestId: guestId || undefined,
     });
 
     await newOrder.save();
@@ -32,19 +32,18 @@ exports.postOrder = async (req, res, next) => {
       host: 'smtp.gmail.com',
       port: 587,
       secure: false,
-      auth:{
+      auth: {
         user: process.env.GMAIL_USER,
-        pass: process.env.GMAIL_PASS
+        pass: process.env.GMAIL_PASS,
+      },
+    });
 
-      }
-    })
-    
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
       to: 'tigrepetanque@gmail.com',
       subject: `New Order From ${customer.name}`,
       text: `Order Details:
-        Cake: ${cakes.map(c => `${c.name} x${c.quantity}`).join(', ')}
+        Cake: ${cakes.map((c) => `${c.name} x${c.quantity}`).join(', ')}
         Pick up Date: ${pickUpDate}
         Client: ${customer.name}, Tel: ${customer.phone}, Email: ${customer.email || 'keine Email'}`,
     });

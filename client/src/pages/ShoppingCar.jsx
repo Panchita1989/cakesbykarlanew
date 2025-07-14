@@ -1,155 +1,154 @@
-import  getGuestId  from '../utils/guestId'; // Passe den Pfad zu deinem Utility an
-import {useState, useEffect} from 'react'
-import '../styles/ShoppingCar.css'
-import {Link} from 'react-router-dom'
-//import SlideMessage from '../components/SlideMessage'
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import getGuestId from '../utils/guestId';
+import '../styles/ShoppingCar.css';
 
+export default function ShoppingCart() {
+  const [cakes, setCakes] = useState([]); // Behalte den cakes Zustand
+  const [checkoutClicked, setCheckOutClicked] = useState(false);
 
-export default function ShoppingCart(){
-const [cakes, setCakes] = useState([])
-   console.log(cakes)
-    useEffect(()=>{
-        const guestId = getGuestId()
-        console.log(guestId)
-        const url = guestId?
-            `http://localhost:5000/cakes?guestId=${guestId}`:
-            'http://localhost:5000/cakes'
-        console.log(url)
-         fetch(url, {
-            credentials: 'include'
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            const dataWithQuantity = data.map(cake => ({
-                ...cake, 
-                quantity: cake.quantity || 1
-            }))
-            console.log('loaded cakes:', data) 
-            setCakes(dataWithQuantity)
-            console.log(dataWithQuantity)
-        })
-        .catch(err => console.error(err))
-    },[])
+  // Fetch für den Warenkorb (cakes) basierend auf guestId
+  useEffect(() => {
+    const guestId = getGuestId();
+    const url = guestId
+      ? `http://localhost:5000/cakes?guestId=${guestId}&orderSent=false`
+      : 'http://localhost:5000/cakes?orderSent=false';
 
-    function increaseQuantity(id) {
-        setCakes(prevCakes => 
-            prevCakes.map(cake => {
-                if(cake._id === id && cake.quantity < 10){
-                    return{
-                        ...cake,
-                        quantity: Number(cake.quantity) + 1
-                    }
-                }
-                return cake
-            })
-        )
-    }
-    function decreaseQuantity(id) {
-        setCakes(prevCakes =>
-            prevCakes.map(cake =>{
-                if(cake._id === id && cake.quantity > 1){
-                    return{
-                        ...cake,
-                        quantity: cake.quantity - 1
-                    }
-            }
-                return cake
-            })
-        )
-    }
-    function getTotalPrice(cake) {
-        return cake.price * cake.quantity
-    }
-    const totalPriceOrder = cakes.reduce((acc, c) => acc + getTotalPrice(c),0 )
+    fetch(url, {
+      credentials: 'include',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const dataWithQuantity = data.map((cake) => ({
+          ...cake,
+          quantity: cake.quantity || 1,
+        }));
+        setCakes(dataWithQuantity); // Cakes laden
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
-    async function handleDelete(cakeId) {
-    try {
-        const guestId = localStorage.getItem('guestId')
-        const url = guestId
-            ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
-            : `http://localhost:5000/cakes/delete/${cakeId}`
-
-        const res = await fetch(url, {
-            method: 'DELETE',
-            credentials: 'include'
-        })
-
-        if (!res.ok) {
-            throw new Error("Deleting not possible")
+  // Menge der Kuchen erhöhen
+  function increaseQuantity(id) {
+    setCart((prevCart) =>
+      prevCart.map((cake) => {
+        if (cake._id === id && cake.quantity < 10) {
+          return {
+            ...cake,
+            quantity: cake.quantity + 1,
+          };
         }
+        return cake;
+      })
+    );
+  }
 
-        const data = await res.json()
-        setCakes(prevCakes => prevCakes.filter(cake => cake._id !== cakeId))
+  // Menge der Kuchen verringern
+  function decreaseQuantity(id) {
+    setCart((prevCart) =>
+      prevCart.map((cake) => {
+        if (cake._id === id && cake.quantity > 1) {
+          return {
+            ...cake,
+            quantity: cake.quantity - 1,
+          };
+        }
+        return cake;
+      })
+    );
+  }
 
-    } catch (error) {
-        console.error(error)
-    }
-}
-    async function handleDeleteAll() {
+  // Gesamtpreis berechnen
+  function getTotalPrice(cake) {
+    return cake.price * cake.quantity;
+  }
+
+  const totalPriceOrder = cakes.reduce((acc, c) => acc + getTotalPrice(c), 0);
+
+  // Löschen eines einzelnen Kuchens
+  async function handleDelete(cakeId) {
     try {
-        const guestId = localStorage.getItem('guestId')
-        const url = guestId
-            ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
-            : `http://localhost:5000/cakes/delete`
+      const guestId = localStorage.getItem('guestId');
+      const url = guestId
+        ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
+        : `http://localhost:5000/cakes/delete/${cakeId}`;
 
-        const res = await fetch(url, {
-            method: 'DELETE',
-            credentials: 'include'
-        })
+      const res = await fetch(url, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
 
-        const data = await res.json()
-        setCakes([])
+      if (!res.ok) {
+        throw new Error('Deleting not possible');
+      }
+
+      setCakes((prevCake) => prevCake.filter((cake) => cake._id !== cakeId));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Löschen aller Kuchen im Warenkorb
+  async function handleDeleteAll() {
+    try {
+      const guestId = localStorage.getItem('guestId');
+      const url = guestId
+        ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+        : `http://localhost:5000/cakes/delete`;
+
+      const res = await fetch(url, {
+        method: 'DELETE',
+        credentials: 'include',
+      });
 
     } catch (error) {
-        console.error(error)
+      console.error(error);
     }
-}
-    return(
-        <>
-        <div className="min-h-screen bg-gray-100 p-6">
-        <h1 className="text-xl font-bold mb-6">Your Cart 🛒</h1>    
-        <Link to='/choose'><button className='keepShopping'>Keep Shopping</button></Link>
-        <div className="flex flex-wrap justify-center gap-6">
-        {cakes.map((cake) => (
-            <article key={cake._id} className="bg-white border rounded-lg shadow-lg overflow-hidden w-60">
-                <img 
-                    src={cake.image} 
-                    alt={cake.name}
-                    className='w-full h-48 object-cover'
-                />
-                <div className='p-4'>
-                    <h2 className="text-xl font-semibold text-gray-800">{cake.name}</h2>
-                    <p className="mt-2 text-gray-600">{cake.description}</p>
-                    <p className="mt-4 text-lg font-medium text-gray-900">Price: {cake.price} MXN</p>     
-                        <span
-                            onClick={() => decreaseQuantity(cake._id)}
-                            className="bg-gray-300 px-2 rounded"
-                        > - </span>
-                        <span>{cake.quantity}</span>
-                        <span
-                            onClick={() => increaseQuantity(cake._id)}
-                            className="bg-gray-300 px-2 rounded"
-                        > + </span>
-                    <p className="mt-2 font-semibold">
-                        Total Price: {getTotalPrice(cake)} MXN
-                    </p>
-                    <button className='delete'
-                            onClick={() => handleDelete(cake._id)}>
-                       🗑️ Delete
-                    </button>
-                    </div>               
-            </article>
-        ))}
-        </div>
-        </div>
-        <div className='totalOrder'>
-            <span>Your total order is: ${totalPriceOrder} MXN</span>
-            <span>Click Checkout to finish your order</span>
-        </div>
-        <Link to='/checkout'><button>✅ Checkout </button></Link>
-        <button 
-            onClick={handleDeleteAll}>🗑️ Delete all</button>
-        </>
-    )
-}
+  }
 
+  return (
+    <>
+      <div className="min-h-screen bg-gray-100 p-6">
+        <h1 className="text-xl font-bold mb-6">Your Cart 🛒</h1>
+        <Link to="/choose">
+          <button className="keepShopping">
+            Keep Shopping
+          </button>
+        </Link>
+        <div className="flex flex-wrap justify-center gap-6">
+          {cakes.map((cake) => (
+            <article key={cake._id} className="bg-white border rounded-lg shadow-lg overflow-hidden w-60">
+              <img src={cake.image} alt={cake.name} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h2 className="text-xl font-semibold text-gray-800">{cake.name}</h2>
+                <p className="mt-2 text-gray-600">{cake.description}</p>
+                <p className="mt-4 text-lg font-medium text-gray-900">Price: {cake.price} MXN</p>
+                <span onClick={() => decreaseQuantity(cake._id)} className="bg-gray-300 px-2 rounded">
+                  {' '}
+                  -{' '}
+                </span>
+                <span>{cake.quantity}</span>
+                <span onClick={() => increaseQuantity(cake._id)} className="bg-gray-300 px-2 rounded">
+                  {' '}
+                  +{' '}
+                </span>
+                <p className="mt-2 font-semibold">Total Price: {getTotalPrice(cake)} MXN</p>
+                <button className="delete" onClick={() => handleDelete(cake._id)}>
+                  🗑️ Delete
+                </button>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+      <div className="totalOrder">
+        <span>Your total order is: ${totalPriceOrder} MXN</span>
+        <span>Click Checkout to finish your order</span>
+      </div>
+      <Link to="/checkout">
+        <button>✅ Checkout </button>
+      </Link>
+      <button onClick={handleDeleteAll}>🗑️ Delete all</button>
+    </>
+  );
+}

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import FormWrapper from '../components/formWrapper'
-import handleSendOrder from '../logic/handleSendOrder'
 
 export default function FormPage() {
   const location = useLocation()
   const [formType, setFormType] = useState(null)
   const [prefillData, setPrefillData] = useState(null)
+  const [cakes, setCakes] = useState([])
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     const path = location.pathname
@@ -32,6 +33,7 @@ export default function FormPage() {
             throw new Error('Something went wrong')
           }
           const data = await res.json()
+          console.log('Response Data:', data)
           setPrefillData(data)
         } catch (err) {
           console.error(err)
@@ -47,7 +49,10 @@ export default function FormPage() {
     <FormWrapper
       formType={formType}
       prefillData={prefillData}
-      // Hier kein onSendOrder übergeben, das macht FormWrapper selbst
+      setCakes={setCakes}
+      setCart={setCart}
+      cakes={cakes}
+
     />
   )
 }
