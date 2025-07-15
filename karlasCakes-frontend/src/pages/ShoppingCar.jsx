@@ -5,7 +5,7 @@ import '../styles/ShoppingCar.css';
 
 export default function ShoppingCart() {
   const [cakes, setCakes] = useState([]); // Behalte den cakes Zustand
-  const [checkoutClicked, setCheckOutClicked] = useState(false);
+ // const [checkoutClicked, setCheckOutClicked] = useState(false);
 
   // Fetch für den Warenkorb (cakes) basierend auf guestId
   useEffect(() => {
@@ -30,8 +30,8 @@ export default function ShoppingCart() {
 
   // Menge der Kuchen erhöhen
   function increaseQuantity(id) {
-    setCart((prevCart) =>
-      prevCart.map((cake) => {
+    setCakes((prevCake) =>
+      prevCake.map((cake) => {
         if (cake._id === id && cake.quantity < 10) {
           return {
             ...cake,
@@ -45,8 +45,8 @@ export default function ShoppingCart() {
 
   // Menge der Kuchen verringern
   function decreaseQuantity(id) {
-    setCart((prevCart) =>
-      prevCart.map((cake) => {
+    setCakes((prevCake) =>
+      prevCake.map((cake) => {
         if (cake._id === id && cake.quantity > 1) {
           return {
             ...cake,
@@ -89,22 +89,22 @@ export default function ShoppingCart() {
   }
 
   // Löschen aller Kuchen im Warenkorb
-  async function handleDeleteAll() {
-    try {
-      const guestId = localStorage.getItem('guestId');
-      const url = guestId
-        ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
-        : `http://localhost:5000/cakes/delete`;
 
-      const res = await fetch(url, {
-        method: 'DELETE',
-        credentials: 'include',
-      });
-
-    } catch (error) {
-      console.error(error);
-    }
+async function handleDeleteAll() {
+  try {
+    const guestId = localStorage.getItem('guestId');
+    const url = guestId
+      ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
+      : `http://localhost:5000/cakes/delete`;
+    const res = await fetch(url, {
+      method: 'DELETE',
+      credentials: 'include',
+    });
+    setCakes([])
+  } catch (error) {
+    console.error(error);
   }
+}
 
   return (
     <>
