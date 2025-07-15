@@ -32,7 +32,8 @@ app.use(logger('dev'))
 const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';  // Default auf lokal, falls nicht gesetzt
 console.log(clientUrl)
 app.use(cors({
-  origin: clientUrl,
+  //origin: clientUrl,
+  origin: '*',
   credentials: true
 }));
 
