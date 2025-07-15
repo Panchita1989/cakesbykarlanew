@@ -4,6 +4,7 @@ import  getGuestId  from "../utils/guestId";
 //import '../styles/ChooseYourCake.css';
 
 export default function CakeCard(props) {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [quantity, setQuantity] = useState(1);
 
   const handleAdd = async (e) => {
@@ -19,7 +20,7 @@ export default function CakeCard(props) {
     const guestId = getGuestId();
 
     try {
-      const res = await fetch("http://localhost:5000/cakes/add", {
+      const res = await fetch(`${API_URL}/cakes/add`, {
         method: "POST",
         credentials: "include",
         headers: {

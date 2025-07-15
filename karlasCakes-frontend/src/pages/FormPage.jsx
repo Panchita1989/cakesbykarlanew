@@ -8,6 +8,7 @@ export default function FormPage() {
   const [prefillData, setPrefillData] = useState(null)
   const [cakes, setCakes] = useState([])
   const [cart, setCart] = useState([])
+  const API_URL = import.meta.env.VITE_API_URL
 
   useEffect(() => {
     const path = location.pathname
@@ -22,7 +23,7 @@ export default function FormPage() {
     async function fetchUserData() {
       if (formType === 'contact' || formType === 'checkout') {
         try {
-          const res = await fetch('http://localhost:5000/user/me', {
+          const res = await fetch(`${API_URL}/user/me`, {
             credentials: 'include',
           })
           if (!res.ok) {

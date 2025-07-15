@@ -2,6 +2,7 @@ import handleDeleteAll from '../pages/ShoppingCar'
 
 export default async function handleSendOrder(formData, setError, navigate, cakes, startDate, setCakes) {
   const data = Object.fromEntries(formData.entries());
+  const API_URL = import.meta.env.VITE_API_URL
   
   const cleanedCakes = cakes.map(cake => {
     const cakeId = cake._id;
@@ -33,7 +34,7 @@ export default async function handleSendOrder(formData, setError, navigate, cake
 
   try {
     
-    const res = await fetch('http://localhost:5000/checkout', {
+    const res = await fetch(`${API_URL}/checkout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

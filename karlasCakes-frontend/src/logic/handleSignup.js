@@ -1,7 +1,8 @@
 export default async function handleSignup(formData, setError, navigate) {
+  const API_URL = import.meta.env.VITE_API_URL
   try {
     const data = Object.fromEntries(formData.entries())
-    const res = await fetch('http://localhost:5000/user/signup', {
+    const res = await fetch(`${API_URL}/user/signup`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },

@@ -8,13 +8,14 @@ import '../styles/orderSummary.css'
 export default function OrderSummary(){
     const[cakes, setCakes] = useState([])
     const[startDate, setStartDate] = useState(new Date())
+    const API_URL = import.meta.env.VITE_API_URL
     
 
      useEffect(() => {
         const guestId = localStorage.getItem('guestId');
         const url = guestId
-            ? `http://localhost:5000/cakes?guestId=${guestId}`
-            : 'http://localhost:5000/cakes';
+            ? `${API_URL}/cakes?guestId=${guestId}`
+            : `${API_URL}/cakes`;
 
         fetch(url, {
             credentials: 'include'

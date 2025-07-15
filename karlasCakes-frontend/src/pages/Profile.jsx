@@ -7,11 +7,12 @@ import Logout from '../components/Logout'
 export default function Profile (){
     
     const [user, setUser] = React.useState(null)
+    const API_URL = import.meta.env.VITE_API_URL
 
     useEffect(() => {
         async function fetchUser() {
             try {
-                const res = await fetch('http://localhost:5000/user/me', {
+                const res = await fetch(`${API_URL}/user/me`, {
                 credentials:'include'
                 })
 

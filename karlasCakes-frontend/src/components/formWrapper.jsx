@@ -15,12 +15,13 @@ export default function FormWrapper({formType, prefillData, setCakes, cakes}) {
   const [activeForm, setActiveForm] = useState(formType);
   const [imagePosition, setImagePosition] = useState('right');
   const [direction, setDirection] = useState('none');
+  const API_URL = import.meta.env.VITE_API_URL
 
   useEffect(() => {
     if (formType === 'checkout') {
         const guestId = GetGuestId(); // Hole die guestId
 
-        fetch(`http://localhost:5000/cakes?guestId=${guestId}`, {
+        fetch(`${API_URL}/cakes?guestId=${guestId}`, {
             credentials: 'include'
         })
         .then(res => res.json()) // Direkt die JSON-Antwort extrahieren

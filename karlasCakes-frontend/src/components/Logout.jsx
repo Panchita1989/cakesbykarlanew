@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 
 export default function Logout(){
     const navigate = useNavigate()
+    const API_URL = import.meta.env.VITE_API_URL
 
     const handleLogout = async () => {
         try {
-            const res = await fetch('http://localhost:5000/user/logout',{
+            const res = await fetch(`${API_URL}/user/logout`,{
                 method:'DELETE',
                 credentials: 'include'
             })

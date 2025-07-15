@@ -5,14 +5,14 @@ import '../styles/ShoppingCar.css';
 
 export default function ShoppingCart() {
   const [cakes, setCakes] = useState([]); // Behalte den cakes Zustand
- // const [checkoutClicked, setCheckOutClicked] = useState(false);
+ const API_URL = import.meta.env.VITE_API_URL
 
   // Fetch für den Warenkorb (cakes) basierend auf guestId
   useEffect(() => {
     const guestId = getGuestId();
     const url = guestId
-      ? `http://localhost:5000/cakes?guestId=${guestId}&orderSent=false`
-      : 'http://localhost:5000/cakes?orderSent=false';
+      ? `${API_URL}/cakes?guestId=${guestId}&orderSent=false`
+      : `${API_URL}/cakes?orderSent=false`;
 
     fetch(url, {
       credentials: 'include',
@@ -70,8 +70,8 @@ export default function ShoppingCart() {
     try {
       const guestId = localStorage.getItem('guestId');
       const url = guestId
-        ? `http://localhost:5000/cakes/delete/${cakeId}?guestId=${guestId}`
-        : `http://localhost:5000/cakes/delete/${cakeId}`;
+        ? `${API_URL}/cakes/delete/${cakeId}?guestId=${guestId}`
+        : `${API_URL}/cakes/delete/${cakeId}`;
 
       const res = await fetch(url, {
         method: 'DELETE',
@@ -94,8 +94,8 @@ async function handleDeleteAll() {
   try {
     const guestId = localStorage.getItem('guestId');
     const url = guestId
-      ? `http://localhost:5000/cakes/delete?guestId=${guestId}`
-      : `http://localhost:5000/cakes/delete`;
+      ? `${API_URL}/cakes/delete?guestId=${guestId}`
+      : `${API_URL}/cakes/delete`;
     const res = await fetch(url, {
       method: 'DELETE',
       credentials: 'include',
