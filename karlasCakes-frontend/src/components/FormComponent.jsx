@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import '../styles/contact.css'
+import '../styles/Contact.css'
 import formData from '../data/formData'
 import handleLogin from '../logic/handleLogin'
 import handleSignup from '../logic/handleSignup'
