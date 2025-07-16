@@ -15,22 +15,30 @@ const contactRoutes = require('./routes/message')
 const { v4: uuidv4 } = require('uuid')
 const cookieParser = require('cookie-parser')
 
+
+
 require('dotenv').config({path: './config/.env'})
 
 require('./config/passport')(passport)
+
 connectDB()
 
 app.use(express.json())
-app.use(cookieParser())
-app.use(express.urlencoded({extended: true}))
-app.use(logger('dev'))
 
 const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';  // Default auf lokal, falls nicht ges
-//console.log(clientUrl)
+console.log(clientUrl)
 app.use(cors({
   origin: clientUrl,
   credentials: true
 }));
+
+
+app.use(cookieParser())
+app.use(express.urlencoded({extended: true}))
+
+
+
+app.use(logger('dev'))
 
 app.use(
   session({
@@ -40,8 +48,7 @@ app.use(
       cookie: {
         httpOnly: true,
         secure: true,
-        sameSite: 'none',
-        maxAge: 1000 * 60 * 60 * 24 * 1
+        sameSite: 'none'
   },
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,        // Verbindung zur MongoDB

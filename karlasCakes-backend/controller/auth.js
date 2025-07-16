@@ -24,7 +24,7 @@ exports.postLogin = async (req, res, next) => {
   try {
     const {email, password} = req.body
     console.log('are logged in')
-
+    
     const validationErrors = [];
     if (!validator.isEmail(req.body.email)) {
       validationErrors.push({ msg: 'Please enter a valid email address.' });
@@ -53,16 +53,9 @@ exports.postLogin = async (req, res, next) => {
         else resolve();
       });
     });
-    console.log("User nach Login:", req.user);
-
-    req.session.save((err)=>{
-      if(err){
-        console.error('Session save error:', err)
-        return next(err)
-      }
-    })    
-    console.log("Session saved:", req.sessionID);
     
+    console.log("Session nach Login:", req.session);
+    console.log("User nach Login:", req.user);
 
     res.status(200).json({
       msg: 'Success! You are logged in.',
