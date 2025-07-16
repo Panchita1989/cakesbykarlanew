@@ -32,8 +32,7 @@ app.use(logger('dev'))
 const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';  // Default auf lokal, falls nicht gesetzt
 console.log(clientUrl)
 app.use(cors({
-  //origin: clientUrl,
-  origin: '*',
+  origin: clientUrl,
   credentials: true
 }));
 
@@ -44,8 +43,8 @@ app.use(
     saveUninitialized: false,                 // Nur speichern, wenn etwas drinsteht
     cookie:{
       httpOnly: true,
-      secure: false,
-      sameSite: 'lax'
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
     },
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,        // Verbindung zur MongoDB
