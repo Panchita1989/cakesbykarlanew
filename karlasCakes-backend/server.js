@@ -45,14 +45,11 @@ app.use(
     secret: process.env.SESSION_SECRET,      // Cookie-Signatur
     resave: false,                            // Nur speichern, wenn sich was ändert
     saveUninitialized: false,                 // Nur speichern, wenn etwas drinsteht
-    cookie:{
       cookie: {
         httpOnly: true,
         secure: true,
         sameSite: 'none'
-  } 
-
-    },
+  },
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,        // Verbindung zur MongoDB
       ttl: 14 * 24 * 60 * 60,                 // Session läuft nach 14 Tagen ab (optional)
