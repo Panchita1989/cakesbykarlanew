@@ -1,4 +1,4 @@
-import React from 'react'
+//VITE_API_URL=https://cakesbykarla.herokuapp.com  frontend env
 import Karla from '../assets/images/karla.jpg';
 import '../styles/LandingPage.css'
 import {Link} from 'react-router-dom'

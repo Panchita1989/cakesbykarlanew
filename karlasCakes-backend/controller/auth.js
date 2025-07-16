@@ -4,6 +4,9 @@ const User = require('../model/User')
 
 
 exports.getCurrentUser = (req, res) => {
+  console.log('Session object:', req.session);
+    console.log('User object:', req.user);
+
     if(!req.user){
         return res.status(401).json({msg: 'Not logged in.'})
     }

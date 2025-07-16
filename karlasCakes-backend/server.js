@@ -1,3 +1,4 @@
+
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
@@ -22,19 +23,22 @@ require('./config/passport')(passport)
 
 connectDB()
 
-app.use(cookieParser())
-app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 
-
-app.use(logger('dev'))
-
-const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';  // Default auf lokal, falls nicht gesetzt
+const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';  // Default auf lokal, falls nicht ges
 console.log(clientUrl)
 app.use(cors({
   origin: clientUrl,
   credentials: true
 }));
+
+
+app.use(cookieParser())
+app.use(express.urlencoded({extended: true}))
+
+
+
+app.use(logger('dev'))
 
 app.use(
   session({
@@ -42,9 +46,12 @@ app.use(
     resave: false,                            // Nur speichern, wenn sich was ändert
     saveUninitialized: false,                 // Nur speichern, wenn etwas drinsteht
     cookie:{
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+      cookie: {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'none'
+  } 
+
     },
     store: MongoStore.create({
       mongoUrl: process.env.DB_STRING,        // Verbindung zur MongoDB
