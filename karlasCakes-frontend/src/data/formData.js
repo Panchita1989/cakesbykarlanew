@@ -1,5 +1,4 @@
 import brownie from '../assets/images/brownie.jpg'
-import PasswordInput from '../components/PasswordInput';
 
 
 const formConfig = {
@@ -26,7 +25,7 @@ const formConfig = {
         method: 'POST',
         fields:[
             {id: '1', name: 'email', type: 'email', placeholder: 'E-Mail', required: true},
-            {id: '2', name: 'password', component: PasswordInput, placeholder: 'Password', required: true},
+            {id: '2', name: 'password', type: 'password', placeholder: 'Password', required: true},
             {id: '3', name: 'submit', type: 'submit', content: 'Login'}
         ],
         image: {
@@ -47,8 +46,8 @@ const formConfig = {
             {id: '4', label: 'E-Mail', name: 'email', type: 'email', placeholder: 'E-Mail', required: true},
             {id: '5', label: 'confirm E-Mail', name: 'confirmEmail', type: 'email', placeholder: 'Confirm E-Mail', required: true},
             {id: '6', label: 'Phone', name:'phone', type: 'tel', placeholder:'e.g. +52 123 456 7890', required: true},
-            {id: '7', label: 'Password', name: 'password', component: PasswordInput, placeholder: 'Password', required: true},
-            {id: '8', label: 'Confirm Password', name: 'confirmPassword', component: PasswordInput, placeholder: 'Confirm Password', required: true},
+            {id: '7', label: 'Password', name: 'password', type: 'password', placeholder: 'Password', required: true},
+            {id: '8', label: 'Confirm Password', name: 'confirmPassword', type: 'password', placeholder: 'Confirm Password', required: true},
             {id: '9', label: 'Signe Up', name: 'submit', type: 'submit', content: 'Sign Up'}
         ],
         image:{
