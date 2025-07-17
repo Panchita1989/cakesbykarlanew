@@ -49,10 +49,15 @@ exports.postLogin = async (req, res, next) => {
     // Log the user in (req.logIn ist callback-basiert, wir machen daraus Promise)
     await new Promise((resolve, reject) => {
       req.logIn(user, (err) => {
-        if (err) reject(err);
-        else resolve();
+        if (err) return reject(err);
+    // Session speichern, damit Cookie gesetzt wird
+      req.session.save((err2) => {
+        if (err2) return reject(err2);
+        resolve();
+      });
       });
     });
+
     
     console.log("Session nach Login:", req.session);
     console.log("User nach Login:", req.user);
