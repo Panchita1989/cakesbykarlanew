@@ -23,6 +23,8 @@ export default function PasswordInput({name, required, defaultValue, placeholder
                     position: 'absolute',
                     right: '0.5rem',
                     top: '50%',
+                    passing:'0',
+                    margin: '0',
                     transform: 'translateY(-50%)',
                     background: 'none',
                     border: 'none',
