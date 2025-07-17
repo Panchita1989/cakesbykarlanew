@@ -7,6 +7,7 @@ export default function FormPage() {
   const [formType, setFormType] = useState(null)
   const [prefillData, setPrefillData] = useState(null)
   const [cakes, setCakes] = useState([])
+  const [cart, setCart] = useState([])
   const API_URL = import.meta.env.VITE_API_URL
 
 
