@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faEye } from "@fortawesome/free-regular-svg-icons"
+import { faEye } from "@fortawesome/free-solid-svg-icons"
+
 
 export default function PasswordInput({name, required, defaultValue, placeholder}){
     const [visible, setVisible] = useState(false)
