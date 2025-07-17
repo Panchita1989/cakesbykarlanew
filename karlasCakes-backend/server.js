@@ -1,6 +1,7 @@
 
 const express = require('express')
 const app = express()
+app.set('trust proxy', 1)
 const mongoose = require('mongoose')
 const passport = require('passport')
 const session = require('express-session')
