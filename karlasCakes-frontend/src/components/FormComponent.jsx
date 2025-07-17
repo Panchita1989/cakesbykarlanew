@@ -7,6 +7,8 @@ import handleLogin from '../logic/handleLogin'
 import handleSignup from '../logic/handleSignup'
 import handleSendOrder from '../logic/handleSendOrder'
 import handleSendMessage from '../logic/handleSendMessage'
+import PasswordInput from './PasswordInput'
+
 
 export default function FormComponent({formType, prefillData, startDate, setCakes, onSendOrder}) {
     const[error, setError]= useState([])
@@ -77,7 +79,17 @@ export default function FormComponent({formType, prefillData, startDate, setCake
                             type={field.type}                            >
                             {field.content}
                         </button>                        
-                )} else{
+                )} else if(field.type === 'password'){
+                    return(
+                        <PasswordInput 
+                            key= {field.id}
+                            name={field.name}
+                            placeholder={field.placeholder}
+                            required={field.required}
+                            defaultValue={prefillData?.[field.name] || ''}
+                        />
+                    )
+                }else{
                     return(
                         <input
                             key={field.id}
