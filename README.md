@@ -32,14 +32,3 @@ Run the frontend:
 cd frontend
 npm start
 
-Project Structure
-cakes-by-karla/
- ├── frontend/        # React app
- │    ├── src/
- │    └── public/
- ├── backend/         # Node.js + Express API
- │    ├── routes/
- │    ├── models/
- │    └── controllers/
- ├── package.json
- └── README.md
